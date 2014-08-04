@@ -42,14 +42,14 @@ statistics to be reported along with information on missing data, if there are a
 	\code{\link[e1071]{skewness}}, \code{\link[e1071]{kurtosis}}.}
 
 \examples{
-	\dontrun{
-data(Prestige, package="car")
-Prestige[1, "income"] <- NA
-numSummary(Prestige[,c("income", "education")], 
-	statistics=c("mean", "sd", "quantiles", "cv", "skewness", "kurtosis"))
-numSummary(Prestige[,c("income", "education")], groups=Prestige$type)
-remove(Prestige)
-	}
+if (require("car")){
+    data(Prestige)
+    Prestige[1, "income"] <- NA
+    print(numSummary(Prestige[,c("income", "education")], 
+    	statistics=c("mean", "sd", "quantiles", "cv", "skewness", "kurtosis")))
+    print(numSummary(Prestige[,c("income", "education")], groups=Prestige$type))
+    remove(Prestige)
+}
 }
 
 \keyword{misc}

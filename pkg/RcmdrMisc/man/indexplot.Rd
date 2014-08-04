@@ -39,6 +39,7 @@ John Fox \email{jfox@mcmaster.ca}
 
 \examples{
 if (require("car")){
+    data(Prestige)
     with(Prestige, indexplot(income, id.n=2, labels=rownames(Prestige)))
 }
 }

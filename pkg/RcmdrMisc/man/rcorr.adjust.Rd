@@ -13,9 +13,6 @@ to compute matrices of Pearson or Spearman correlations along with
 the pairwise p-values among the correlations. The p-values are corrected
 for multiple inference using Holm's method (see \code{\link[stats]{p.adjust}}).
 Observations are filtered for missing data, and only complete observations are used.
-
-The \code{\link{partial.cor}} function may similarly be used to get p-values and
-adjusted p-values for partial correlations.
 }
 
 \usage{
@@ -43,15 +40,15 @@ John Fox, adapting code from Robert A. Muenchen.
 }
 
 \seealso{
-\code{\link[Hmisc]{rcorr}}, \code{\link[stats]{p.adjust}}, \code{\link{partial.cor}}.
+\code{\link[Hmisc]{rcorr}}, \code{\link[stats]{p.adjust}}.
 }
 
 \examples{
-	\dontrun{
-data(Mroz, package="car")
-rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")])
-rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")], type="spearman")
-	}
+if (require(car)){
+    data(Mroz)
+    rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")])
+    rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")], type="spearman")
+    }
 }
 
 \keyword{ htest }

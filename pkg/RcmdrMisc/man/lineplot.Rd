@@ -28,9 +28,11 @@ John Fox \email{jfox@mcmaster.ca}
 }
 
 \examples{
-data(Bfox, package="car")
-Bfox$time <- as.numeric(rownames(Bfox))
-with(Bfox, lineplot(time, menwage, womwage))
+    if (require("car")){
+    data(Bfox)
+    Bfox$time <- as.numeric(rownames(Bfox))
+    with(Bfox, lineplot(time, menwage, womwage))
+}
 }
 
 \keyword{hplot}

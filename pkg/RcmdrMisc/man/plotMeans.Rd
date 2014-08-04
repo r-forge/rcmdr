@@ -42,8 +42,10 @@ plotMeans(response, factor1, factor2,
 }
 
 \examples{
-data(Moore, package="car")
-with(Moore, plotMeans(conformity, fcategory, partner.status, ylim=c(0, 25)))
+if (require(car)){
+    data(Moore)
+    with(Moore, plotMeans(conformity, fcategory, partner.status, ylim=c(0, 25)))
+}
 }
 
 \author{John Fox \email{jfox@mcmaster.ca}}
