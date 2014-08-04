@@ -1,0 +1,4 @@
+Changes to Version 1.0-0
+
+  o First version of the package, with functions moved from the Rcmdr package to make them more conveniently available to other CRAN packages (at the suggestion of Liviu Andronic).
+

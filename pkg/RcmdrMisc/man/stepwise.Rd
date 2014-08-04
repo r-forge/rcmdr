@@ -48,11 +48,20 @@ The model selected by \code{stepAIC}.
 
 \examples{
 # adapted from ?stepAIC in MASS
-require(MASS)
-example(birthwt)
+if (require(MASS)){
+data(birthwt)
+bwt <- with(birthwt, {
+    race <- factor(race, labels = c("white", "black", "other"))
+    ptd <- factor(ptl > 0)
+    ftv <- factor(ftv)
+    levels(ftv)[-(1:2)] <- "2+"
+    data.frame(low = factor(low), age, lwt, race, smoke = (smoke > 0),
+               ptd, ht = (ht > 0), ui = (ui > 0), ftv)
+})
 birthwt.glm <- glm(low ~ ., family = binomial, data = bwt)
-stepwise(birthwt.glm, trace = FALSE)
-stepwise(birthwt.glm, direction="forward/backward")
+print(stepwise(birthwt.glm, trace = FALSE))
+print(stepwise(birthwt.glm, direction="forward/backward"))
+}
 }
 
 \keyword{models}
