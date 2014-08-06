@@ -9,7 +9,7 @@ skewness, kurtosis, and quantiles of numeric variables.
 }
 \usage{
 numSummary(data, 
-	statistics=c("mean", "sd", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
+	statistics=c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
 	type=c("2", "1", "3"),
     quantiles=c(0, .25, .5, .75, 1), groups)
     
@@ -18,9 +18,9 @@ numSummary(data,
 
 \arguments{
   \item{data}{a numeric vector, matrix, or data frame.}
-  \item{statistics}{any of \code{"mean"}, \code{"sd"}, \code{"quantiles"}, 
+  \item{statistics}{any of \code{"mean"}, \code{"sd"}, \code{"se(mean)"}, \code{"quantiles"}, 
   	\code{"cv"} (coefficient of variation --- sd/mean), \code{"skewness"}, or \code{"kurtosis"},
-    defaulting to the first three.}
+    defaulting to \code{c("mean", "sd", "quantiles", "IQR")}.}
   \item{type}{definition to use in computing skewness and kurtosis; see the 
   	\code{\link[e1071]{skewness}} and \code{\link[e1071]{kurtosis}} functions in the \pkg{e1071}
   	package. The default is \code{"2"}.}

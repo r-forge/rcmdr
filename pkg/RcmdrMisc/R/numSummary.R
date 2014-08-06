@@ -1,9 +1,9 @@
 # various numeric summary statistics
 
-# last modified 2014-08-04 by J. Fox
+# last modified 2014-08-05 by J. Fox
 
 numSummary <- function(data, 
-    statistics=c("mean", "sd", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
+    statistics=c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
     type=c("2", "1", "3"),
     quantiles=c(0, .25, .5, .75, 1), groups){
     sd <- function(x, type, ...){
@@ -11,6 +11,12 @@ numSummary <- function(data,
     }
     IQR <- function(x, type, ...){
         apply(as.matrix(x), 2, stats::IQR, na.rm=TRUE)
+    }
+    std.err.mean <- function(x, ...){
+      x <- as.matrix(x)
+      sd <- sd(x)
+      n <- colSums(!is.na(x))
+      sd/sqrt(n)
     }
     cv <- function(x, ...){
         x <- as.matrix(x)
@@ -33,7 +39,7 @@ numSummary <- function(data,
     if (!missing(groups)) groups <- as.factor(groups)
     variables <- names(data)
     if (missing(statistics)) statistics <- c("mean", "sd", "quantiles", "IQR")
-    statistics <- match.arg(statistics, c("mean", "sd", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
+    statistics <- match.arg(statistics, c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
         several.ok=TRUE)
     type <- match.arg(type)
     type <- as.numeric(type)
@@ -42,7 +48,7 @@ numSummary <- function(data,
     quants <- if (length(quantiles) > 1) paste(100*quantiles, "%", sep="") else NULL
     #    quants <- paste(100*quantiles, "%", sep="")
     nquants <- length(quants)
-    stats <- c(c("mean", "sd", "IQR", "cv", "skewness", "kurtosis")[c("mean", "sd", "IQR", "cv", "skewness", "kurtosis") %in% statistics], quants)
+    stats <- c(c("mean", "sd", "se(mean)", "IQR", "cv", "skewness", "kurtosis")[c("mean", "sd", "se(mean)", "IQR", "cv", "skewness", "kurtosis") %in% statistics], quants)
     nstats <- length(stats)
     nvars <- length(variables)
     result <- list()
@@ -50,7 +56,9 @@ numSummary <- function(data,
         if (statistics == "quantiles")
             table <- quantile(data[,variables], probs=quantiles, na.rm=TRUE)
         else {
-            table <- do.call(statistics, list(x=data[,variables], na.rm=TRUE, type=type))
+            stats <- statistics
+            stats[stats == "se(mean)"] <- "std.err.mean"
+            table <- do.call(stats, list(x=data[,variables], na.rm=TRUE, type=type))
             names(table) <- statistics
         }
         NAs <- sum(is.na(data[,variables]))
@@ -79,6 +87,7 @@ numSummary <- function(data,
         colnames(table) <- stats
         if ("mean" %in% stats) table[,"mean"] <- colMeans(X, na.rm=TRUE)
         if ("sd" %in% stats) table[,"sd"] <- sd(X)
+        if ("se(mean)" %in% stats) table[, "se(mean)"] <- std.err.mean(X)
         if ("IQR" %in% stats) table[, "IQR"] <- IQR(X)
         if ("cv" %in% stats) table[,"cv"] <- cv(X)
         if ("skewness" %in% statistics) table[, "skewness"] <- skewness(X, type=type)
@@ -104,6 +113,9 @@ numSummary <- function(data,
             if ("sd" %in% stats)
                 table[, "sd", variable] <- tapply(data[, variable],
                     groups, sd, na.rm=TRUE)
+            if ("se(mean)" %in% stats)
+              table[, "se(mean)", variable] <- tapply(data[, variable],
+                    groups, std.err.mean, na.rm=TRUE)
             if ("IQR" %in% stats)
                 table[, "IQR", variable] <- tapply(data[, variable],
                     groups, IQR, na.rm=TRUE)
