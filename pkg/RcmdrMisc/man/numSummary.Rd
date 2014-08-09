@@ -9,7 +9,8 @@ skewness, kurtosis, and quantiles of numeric variables.
 }
 \usage{
 numSummary(data, 
-	statistics=c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
+	statistics=c("mean", "sd", "se(mean)", "IQR", 
+        "quantiles", "cv", "skewness", "kurtosis"),
 	type=c("2", "1", "3"),
     quantiles=c(0, .25, .5, .75, 1), groups)
     
