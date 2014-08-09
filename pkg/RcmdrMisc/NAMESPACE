@@ -1,18 +1,20 @@
-# last modified 2014-08-04 by J. Fox
+# last modified 2014-08-09 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
 importFrom(abind, abind)
 importFrom(e1071, skewness, kurtosis)
-importFrom(car, showLabels)
+importFrom(car, showLabels, hccm)
+importFrom(sandwich, vcovHAC)
 
 export(assignCluster, bin.var, colPercents, Hist, indexplot, KMeans, lineplot, mergeRows, 
     numSummary, partial.cor, plotDistr, plotMeans, rcorr.adjust, reliability, rowPercents, 
-    stepwise, totPercents)
+    stepwise, summarySandwich, totPercents)
 
 S3method(mergeRows, data.frame)
 S3method(print, numSummary)
 S3method(print, reliability)
 S3method(print, rcorr.adjust)
+S3method(summarySandwich, lm)
 
 
