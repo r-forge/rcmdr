@@ -1,6 +1,6 @@
 # various numeric summary statistics
 
-# last modified 2014-08-05 by J. Fox
+# last modified 2014-09-04 by J. Fox
 
 numSummary <- function(data, 
     statistics=c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
@@ -36,7 +36,15 @@ numSummary <- function(data,
         apply(x, 2, kurtosis, type=type)
     }
     data <- as.data.frame(data)
-    if (!missing(groups)) groups <- as.factor(groups)
+    if (!missing(groups)) {
+        groups <- as.factor(groups)
+        counts <- table(groups)
+        if (any(counts == 0)){
+            levels <- levels(groups)
+            warning("the following groups are empty: ", paste(levels[counts == 0], collapse=", "))
+            groups <- factor(groups, levels=levels[counts != 0])
+        }
+    }
     variables <- names(data)
     if (missing(statistics)) statistics <- c("mean", "sd", "quantiles", "IQR")
     statistics <- match.arg(statistics, c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
