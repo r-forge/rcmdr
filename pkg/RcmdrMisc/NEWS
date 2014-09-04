@@ -1,6 +1,6 @@
 Changst to Version 1.0-2
 
-  o Nothing yet!
+  o Updated the following inadvertently reverted functions (and docs): partial.cor(), numSummary(), Hist(), rcorr.adjust() (following bug report by Mark Dunning).
 
 Changes to Version 1.0-1
 
