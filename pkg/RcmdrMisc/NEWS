@@ -3,6 +3,8 @@ Changes to Version 1.0-3
   o Fixed bug in rcorr.adjust() that didn't properly convert .000 to <.001 for pairwise-complete
 correlations (reported by Bob Muenchen).
 
+  o Added Barplot() and Dotplot().
+
 Changes to Version 1.0-2
 
   o Updated the following inadvertently reverted functions (and docs): partial.cor(), numSummary(), Hist(), rcorr.adjust() (following bug report by Mark Dunning).
