@@ -10,20 +10,19 @@ optionally classified by a factor. Dot plots are useful for visualizing the
 distrbution of a numeric variable in a small data set.}
 
 \usage{
-Dotplot(x, by, bin = FALSE, breaks,
-  xlim, xlab = deparse(substitute(x)), main = "", cex, correction=1/3)
+Dotplot(x, by, bin = FALSE, breaks, xlim, 
+    xlab = deparse(substitute(x)))
 }
 
 \arguments{
   \item{x}{a numeric variable.}
   \item{by}{optinally a factor by which to classify \code{x}.}
-  \item{bin}{if \code{TRUE} (the default is \code{FALSE}), \code{x} is binned prior to plotting.}
-  \item{breaks}{
-breaks for the bins, in a form acceptable to the \code{\link{hist}} function;
-the default is \code{"Sturges"}.}
+  \item{bin}{if \code{TRUE} (the default is \code{FALSE}), the values of \code{x} are binned, 
+    as in a histogram, prior to plotting.}
+  \item{breaks}{breaks for the bins, in a form acceptable to the \code{\link{hist}} function;
+    the default is \code{"Sturges"}.}
   \item{xlim}{optional 2-element numeric vector giving limits of the horizontal axis.}
   \item{xlab}{optional character string to label horizontal axis.}
-  \item{main, cex, correction}{should not normally be specified by the user.}
 }
 
 \details{
@@ -55,7 +54,6 @@ if (require(car)){
     Dotplot(education, by=type, bin=TRUE)
   })
 }
-
 }
 
 \keyword{hplot}
