@@ -1,4 +1,4 @@
-# last modified 2015-02-24 by J. Fox
+# last modified 2015-04-21 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
@@ -7,9 +7,10 @@ importFrom(e1071, skewness, kurtosis)
 importFrom(car, showLabels, hccm, linearHypothesis)
 importFrom(sandwich, vcovHAC)
 importFrom(colorspace, rainbow_hcl)
+importFrom(readxl, read_excel)
 
 export(assignCluster, Barplot, bin.var, colPercents, Dotplot, Hist, indexplot, KMeans, lineplot, mergeRows, 
-    numSummary, partial.cor, plotDistr, plotMeans, rcorr.adjust, reliability, rowPercents, 
+    numSummary, partial.cor, plotDistr, plotMeans, rcorr.adjust, readXL, reliability, rowPercents, 
     stepwise, summarySandwich, totPercents)
 
 S3method(mergeRows, data.frame)
