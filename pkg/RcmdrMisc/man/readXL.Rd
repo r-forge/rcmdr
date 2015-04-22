@@ -1,19 +1,24 @@
 \name{readXL}
 \alias{readXL}
+\alias{excel_sheets}
 \title{
 Read an Excel File
 }
 \description{
-Read and Excel file, either of type \code{.xls} or \code{.xlsx} into an R data frame; provides
-a front end to the \code{\link{read_excel}} function in the \pkg{readxl} package.}
+\code{readXL} reads an Excel file, either of type \code{.xls} or \code{.xlsx} into an R data frame; it provides
+a front end to the \code{\link{read_excel}} function in the \pkg{readxl} package.
+\code{\link[readxl]{excel_sheets}} is re-exported from the \pkg{readxl} package and reports the
+names of spreadsheets in an Excel file.}
 
 \usage{
 readXL(file, rownames = FALSE, header = TRUE, na = "", sheet = 1, 
   stringsAsFactors = default.stringsAsFactors())
+  
+excel_sheets(path)
 }
 
 \arguments{
-  \item{file}{path to an Excel file.}
+  \item{file, path}{path to an Excel file.}
   \item{rownames}{if \code{TRUE} (the default is \code{FALSE}), the first column in the
     spreadsheet contains row names.}
   \item{header}{if \code{TRUE} (the default), the first row in the spreadsheet contains column
@@ -34,7 +39,7 @@ John Fox \email{jfox@mcmaster.ca}
 }
 
 \seealso{
-\code{\link{read_excel}}
+\code{\link{read_excel}}, \code{\link[readxl]{excel_sheets}}
 }
 
 \keyword{manip}

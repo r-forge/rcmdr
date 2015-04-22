@@ -5,7 +5,7 @@ correlations (reported by Bob Muenchen).
 
   o Added Barplot() and Dotplot().
   
-  o Added readXL().
+  o Added readXL(), export excel_sheets(), both from readxl package.
 
 Changes to Version 1.0-2
 
