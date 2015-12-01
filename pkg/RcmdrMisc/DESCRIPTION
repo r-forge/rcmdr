@@ -1,6 +1,6 @@
 Package: RcmdrMisc
-Version: 1.0-3
-Date: 2015-07-13
+Version: 1.0-4
+Date: 2015-12-01
 Title: R Commander Miscellaneous Functions
 Authors@R: c(person("John", "Fox", role = c("aut", "cre"), email = "jfox@mcmaster.ca"),
     person("Robert", "Muenchen", role = "ctb"),

@@ -1,3 +1,7 @@
+Changes to Version 1.0-4
+
+  o Added ... argument to Barplot (after Rcmdr bug reported by Fritz Leisch).
+
 Changes to Version 1.0-3
 
   o Fixed bug in rcorr.adjust() that didn't properly convert .000 to <.001 for pairwise-complete
