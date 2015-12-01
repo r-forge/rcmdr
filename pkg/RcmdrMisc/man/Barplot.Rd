@@ -15,7 +15,7 @@ in the \pkg{graphics} package.}
 Barplot(x, by, scale = c("frequency", "percent"), 
   style = c("divided", "parallel"), col = rainbow_hcl(length(levels(by))), 
   xlab = deparse(substitute(x)), legend.title = deparse(substitute(by)), 
-  ylab = scale, legend.pos = "topright")
+  ylab = scale, legend.pos = "topright", ...)
 }
 
 \arguments{
@@ -39,6 +39,8 @@ an optional character string providing a label for the vertical axis.}
   \item{legend.pos}{
 position of the legend, in a form acceptable to the \code{\link{legend}}
 function.}
+  \item{...}{
+arguments to be based to the \code{\link{barplot}} function.}
 }
 
 \value{
