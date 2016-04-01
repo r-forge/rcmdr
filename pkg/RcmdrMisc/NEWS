@@ -1,6 +1,8 @@
 Changes to Version 1.0-4
 
   o Added ... argument to Barplot (after Rcmdr bug reported by Fritz Leisch).
+  
+  o Added DeltaMethod().
 
 Changes to Version 1.0-3
 

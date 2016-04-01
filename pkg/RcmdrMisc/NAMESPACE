@@ -1,10 +1,10 @@
-# last modified 2015-07-13 by J. Fox
+# last modified 2016-04-01 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
 importFrom(abind, abind)
 importFrom(e1071, skewness, kurtosis)
-importFrom(car, showLabels, hccm, linearHypothesis)
+importFrom(car, showLabels, hccm, linearHypothesis, deltaMethod)
 importFrom(sandwich, vcovHAC)
 importFrom(colorspace, rainbow_hcl)
 importFrom(readxl, read_excel, excel_sheets)
@@ -14,11 +14,12 @@ importFrom(grDevices, n2mfrow, palette)
 importFrom(stats, coef, complete.cases, cor, dist, formula, kmeans, 
     model.matrix, na.omit, p.adjust, pf, pt, qt, quantile, sd, update)
 
-export(assignCluster, Barplot, bin.var, colPercents, Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, 
+export(assignCluster, Barplot, bin.var, colPercents, DeltaMethod, Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, 
     numSummary, partial.cor, plotDistr, plotMeans, rcorr.adjust, readXL, reliability, rowPercents, 
     stepwise, summarySandwich, totPercents)
 
 S3method(mergeRows, data.frame)
+S3method(print, DeltaMethod)
 S3method(print, numSummary)
 S3method(print, partial.cor)
 S3method(print, reliability)
