@@ -1,3 +1,7 @@
+Changes to Version 1.0-5
+
+  o Added connect argument to plotMeans() (suggestion of Graham Smith).
+
 Changes to Version 1.0-4
 
   o Added ... argument to Barplot (after Rcmdr bug reported by Fritz Leisch).
