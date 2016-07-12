@@ -1,6 +1,8 @@
 Changes to Version 1.0-5
 
   o Added connect argument to plotMeans() (suggestion of Graham Smith).
+  
+  o Added capability to plot regions under density functions to plotDistr().
 
 Changes to Version 1.0-4
 
