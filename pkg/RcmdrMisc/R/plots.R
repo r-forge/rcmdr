@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2016-04-28 by J. Fox
+# last modified 2016-07-10 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -98,34 +98,43 @@ lineplot <- function(x, ..., legend){
     return(invisible(NULL))
 }
 
-plotDistr <- function(x, p, discrete=FALSE, cdf=FALSE, ...){
-    if (discrete){
-        if (cdf){
-            plot(x, p, ..., type="n")
-            abline(h=0:1, col="gray")
-            lines(x, p, ..., type="s")
-        }
-        else {
-            plot(x, p, ..., type="h")
-            points(x, p, pch=16)
-            abline(h=0, col="gray")
-        }
+plotDistr <- function(x, p, discrete=FALSE, cdf=FALSE, regions=NULL, col="gray", ...){
+  if (discrete){
+    if (cdf){
+      plot(x, p, ..., type="n")
+      abline(h=0:1, col="gray")
+      lines(x, p, ..., type="s")
+    }
+    else {
+      plot(x, p, ..., type="h")
+      points(x, p, pch=16)
+      abline(h=0, col="gray")
+    }
+  }
+  else{
+    if (cdf){
+      plot(x, p, ..., type="n")
+      abline(h=0:1, col="gray")
+      lines(x, p, ..., type="l")
     }
     else{
-        if (cdf){
-            plot(x, p, ..., type="n")
-            abline(h=0:1, col="gray")
-            lines(x, p, ..., type="l")
-        }
-        else{
-            plot(x, p, ..., type="n")
-            abline(h=0, col="gray")
-            lines(x, p, ..., type="l")
-        }
+      plot(x, p, ..., type="n")
+      abline(h=0, col="gray")
+      lines(x, p, ..., type="l")
     }
-    return(invisible(NULL))
+    if (!is.null(regions)){
+      for (region in regions){
+        which.xs <- (x >= region[1] & x <= region[2])
+        xs <- x[which.xs]
+        ps <- p[which.xs]
+        xs <- c(xs[1], xs, xs[length(xs)])
+        ps <- c(0, ps, 0)
+        polygon(xs, ps, col=col)
+      }
+    }
+  }
+  return(invisible(NULL))
 }
-
 
 plotMeans <- function(response, factor1, factor2, error.bars = c("se", "sd", "conf.int", "none"),
     level=0.95, xlab=deparse(substitute(factor1)), ylab=paste("mean of", deparse(substitute(response))),
