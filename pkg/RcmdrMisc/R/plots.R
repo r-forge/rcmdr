@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2016-07-10 by J. Fox
+# last modified 2016-07-12 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -123,13 +123,15 @@ plotDistr <- function(x, p, discrete=FALSE, cdf=FALSE, regions=NULL, col="gray",
       lines(x, p, ..., type="l")
     }
     if (!is.null(regions)){
-      for (region in regions){
+      col <- rep(col, length=length(regions))
+      for (i in 1:length(regions)){
+        region <- regions[[i]]
         which.xs <- (x >= region[1] & x <= region[2])
         xs <- x[which.xs]
         ps <- p[which.xs]
         xs <- c(xs[1], xs, xs[length(xs)])
         ps <- c(0, ps, 0)
-        polygon(xs, ps, col=col)
+        polygon(xs, ps, col=col[i])
       }
     }
   }

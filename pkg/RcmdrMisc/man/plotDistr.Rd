@@ -21,7 +21,8 @@ plotDistr(x, p, discrete=FALSE, cdf=FALSE,
   \item{regions, col}{for continuous distributions only,
     if non-\code{NULL}, a list of regions to fill with color \code{col};
     each element of the list is a pair of \code{x} values with the minimum and maximum
-    horizontal coordinates of the corresponding region.}
+    horizontal coordinates of the corresponding region; \code{col} may be a single value
+    or a vector.}
   \item{\dots}{arguments to be passed to \code{plot}.}
 }
 
@@ -37,7 +38,7 @@ John Fox \email{jfox@mcmaster.ca}
 x <- seq(-4, 4, length=100)
 plotDistr(x, dnorm(x), xlab="Z", ylab="p(z)", main="Standard Normal Density")
 plotDistr(x, dnorm(x), xlab="Z", ylab="p(z)", main="Standard Normal Density",
-    region=list(c(1.96, Inf), c(-Inf, -1.96)), col="red")
+    region=list(c(1.96, Inf), c(-Inf, -1.96)), col=c("red", "blue"))
 plotDistr(x, dnorm(x), xlab="Z", ylab="p(z)", main="Standard Normal Density",
     region=list(c(qnorm(0), qnorm(.025)), c(qnorm(.975), qnorm(1)))) # same 
 
