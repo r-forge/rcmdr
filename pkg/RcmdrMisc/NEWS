@@ -3,6 +3,8 @@ Changes to Version 1.0-5
   o Added connect argument to plotMeans() (suggestion of Graham Smith).
   
   o Added capability to plot regions under density functions to plotDistr().
+  
+  o Added *gumbel() functions for the Gumbel distribution, parametrized by location and scale.
 
 Changes to Version 1.0-4
 
