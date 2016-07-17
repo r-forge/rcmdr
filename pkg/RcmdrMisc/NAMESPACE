@@ -1,4 +1,4 @@
-# last modified 2016-07-14 by J. Fox
+# last modified 2016-07-17 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
