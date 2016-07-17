@@ -10,7 +10,8 @@ of the plot as appropriate.
 }
 \usage{
 plotDistr(x, p, discrete=FALSE, cdf=FALSE, 
-  regions=NULL, col="gray", ...)
+  regions=NULL, col="gray", 
+  legend=TRUE, legend.pos="topright", ...)
 }
 
 \arguments{
@@ -23,6 +24,8 @@ plotDistr(x, p, discrete=FALSE, cdf=FALSE,
     each element of the list is a pair of \code{x} values with the minimum and maximum
     horizontal coordinates of the corresponding region; \code{col} may be a single value
     or a vector.}
+  \item{legend}{plot a legend of the regions (default \code{TRUE}).}
+  \item{legend.pos}{position for the legend (see \code{\link{legend}}, default \code{"topright"}).}
   \item{\dots}{arguments to be passed to \code{plot}.}
 }
 

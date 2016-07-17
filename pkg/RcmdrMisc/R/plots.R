@@ -98,7 +98,8 @@ lineplot <- function(x, ..., legend){
     return(invisible(NULL))
 }
 
-plotDistr <- function(x, p, discrete=FALSE, cdf=FALSE, regions=NULL, col="gray", ...){
+plotDistr <- function(x, p, discrete=FALSE, cdf=FALSE, regions=NULL, col="gray", 
+                      legend=TRUE, legend.pos="topright", ...){
   if (discrete){
     if (cdf){
       plot(x, p, ..., type="n")
@@ -132,6 +133,22 @@ plotDistr <- function(x, p, discrete=FALSE, cdf=FALSE, regions=NULL, col="gray",
         xs <- c(xs[1], xs, xs[length(xs)])
         ps <- c(0, ps, 0)
         polygon(xs, ps, col=col[i])
+      }
+      if (legend){
+        if (length(unique(col)) > 1){
+          legend(legend.pos, title = if (length(regions) > 1) "Regions" else "Region", 
+                 legend=sapply(regions, function(region){ 
+                   paste(round(region[1], 2), "to", round(region[2], 2))
+                 }),
+                 col=col, pch=15, pt.cex=2.5, inset=0.02)
+        }
+        else
+        {
+          legend(legend.pos, title = if (length(regions) > 1) "Regions" else "Region", 
+                 legend=sapply(regions, function(region){ 
+                   paste(round(region[1], 2), "to", round(region[2], 2))
+                 }), inset=0.02)
+        }
       }
     }
   }
