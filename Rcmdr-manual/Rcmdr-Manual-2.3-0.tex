@@ -6,6 +6,9 @@
 \usepackage{amsfonts}%
 \usepackage{amssymb}%
 \usepackage{graphicx}
+%\usepackage{url}
+\usepackage{hyperref} 
+
 
 \setlength{\oddsidemargin}{0in}
 \setlength{\evensidemargin}{0in}
@@ -19,14 +22,19 @@
 and updated from Fox (2005). Please address correspondence to
 \texttt{jfox@mcmaster.ca}. }}
 \author{John Fox and Milan Bouchet-Valat}
-\date{Version 2.2-1 (last modified: 25 August 2015)}
+\date{Version 2.3-0 (last modified: 2016-08-09)}
 \maketitle
 
 \section{Introduction}
 
-The\textbf{\ R Commander} \citep{Fox05} provides a graphical user
+The\textbf{\ R Commander} \citep{Fox05, Fox17} provides a graphical user
 interface (\textquotedblleft GUI\textquotedblright) to the open-source
-\textbf{R } statistical computing environment \citep{RCore15}. \textbf{R} is a command-driven system, and new users
+\textbf{R } statistical computing environment \citep{RCore16}. This manual is a brief,
+basic introduction to the \textbf{R Commander}; for more extensive documentation,
+see \citet{Fox17}, which has a website at \href{http://socserv.mcmaster.ca/jfox/Books/RCommander/}{socserv.mcmaster.ca/jfox/Books/RCommander/} 
+or \href{http://tinyurl.com/RcmdrBook}{tinyurl.com/RcmdrBook}.
+
+\textbf{R} is a command-driven system, and new users
 often find learning \textbf{R} challenging. This is particularly true of those
 who are new to statistical methods, such as students in basic-statistics
 courses. By providing a point-and-click interface to \textbf{R}, the \textbf{R
@@ -47,8 +55,8 @@ appearance and use of the \textbf{R Commander} under \textbf{Mac OS X} and on
 \textbf{Linux} and \textbf{Unix} systems. Information about installing the
 \textbf{R Commander} on these platforms is available by following the link to
 the installation notes at the \textbf{R Commander} web page
-$<$\texttt{http://socserv.socsci.mcmaster.ca/ jfox/Misc/Rcmdr/index.html}$>$ or at
-$<$\texttt{tinyurl.com/Rcmdr}$>$.
+\href{http://socserv.socsci.mcmaster.ca/jfox/Misc/Rcmdr/index.html}{socserv.socsci.mcmaster.ca/jfox/Misc /Rcmdr/index.html} or at
+\href{http://tinyurl.com/Rcmdr}{tinyurl.com/Rcmdr}.
 
 We use the following typographical conventions in this document: Names of
 software, such as \textbf{Windows}, \textbf{R}, the \textbf{Rcmdr} package,
@@ -91,7 +99,7 @@ Commander} requires some packages in addition to several of the
 distributed with \textbf{R}. The \textbf{Rcmdr} package, the required
 packages, and many other contributed packages are available for download from
 the Comprehensive R Archive Network (CRAN) at
-$<$\textsf{http://cran.r-project.org/}$>$%.
+\href{http://cran.r-project.org/}{http://cran.r-project.org/}.
 \par
 If these packages are not installed, the \textbf{R Commander} will offer to
 install them from the Internet or from local files (e.g., on a CD/ROM or USB flash drive). If you
@@ -210,7 +218,7 @@ Commander} dialog box has a \emph{Help} button (see below).
 \end{description}
 
 The complete menu \textquotedblleft tree\textquotedblright\ for the \textbf{R
-Commander} (version 2.2-0) is shown below. Most menu items lead to dialog
+Commander} (version 2.3-0) is shown below. Most menu items lead to dialog
 boxes, as illustrated later in this manual. Menu items are inactive
 (\textquotedblleft grayed out\textquotedblright) if they are inapplicable to
 the current context. For example, if a data set contains no factors
@@ -218,8 +226,7 @@ the current context. For example, if a data set contains no factors
 inactive.\footnote{Some menu items may not be displayed in certain
 circumstances. For example, the \textbf{R Markdown} menu items in the
 \emph{File} menu will be displayed only if the \emph{R Markdown} tab is
-activated. The menu items shown here are those that are available by default
-when the \textbf{R Commander} is running under \textbf{Windows}. The menus
+activated. The menus
 also include dividers, which are not shown here, and menu items leading to
 dialog boxes are, as is conventional, followed by \texttt{...}, also not
 shown.}
@@ -261,12 +268,14 @@ Data - New data set
     |             |- from Excel file
     |- Data in packages - List data sets in packages
     |                  |- Read data set from attached package
-    |- Active data set - Select active data set
+    |- Active data set - View data
+    |                 |- Select active data set
     |                 |- Refresh active data set
     |                 |- Help on active data set (if available)
     |                 |- Variables in active data set
     |                 |- Set case names
     |                 |- Subset active data set
+    |                 |- Sort active data set
     |                 |- Aggregate variables in active data set
     |                 |- Remove row(s) from active data set
     |                 |- Stack variables in active data set
@@ -291,7 +300,7 @@ Statistics - Summaries - Active data set
           |           |- Table of statistics
           |           |- Correlation matrix
           |           |- Correlation test
-          |           |- Shapiro-Wilk test of normality
+          |           |- Test of normality
           |- Contingency Tables - Two-way table
           |                    |- Multi-way table
           |                    |- Enter and analyze two-way table
@@ -347,13 +356,15 @@ Graphs - Color palette
                            |- 3D RGL graph
 Models - Select active model
       |- Summarize model
+      |- Compare model coefficients
       |- Add observation statistics to data
-      |- Confidence intervals
       |- Akaike Information Criterion (AIC)
       |- Bayesian Information Criterion (BIC)
       |- Stepwise model selection
       |- Subset model selection
       |- Confidence intervals
+      |- Bootstrap confidence intervals
+      |- Delta method confidence intervals
       |- Hypothesis tests - ANOVA table
       |                  |- Compare two models
       |                  |- Linear hypothesis
@@ -482,7 +493,7 @@ is used if the number of values (cells) in the data set is 10,000 or fewer; for 
 the standard \textbf{R} editor is used.} The data-set viewer can remain open
 while other operations are performed.\footnote{The data viewer, provided by
 the \texttt{showData} function from David Firth's \textbf{relimp}
-package \citep{Firth11}, can be slow for data sets with large numbers of
+package \citep{Firth16}, can be slow for data sets with large numbers of
 variables. When the number of variables exceeds a threshold (initially set to
 100), the less aesthetically pleasing \textbf{R} \texttt{View} command is used
 instead to display the data set. To use \texttt{View} regardless of the number
@@ -1176,7 +1187,7 @@ In its default configuration, the \textbf{R Commander} includes an \emph{R
 Markdown} tab in the upper pane, which accumulates the commands generated
 during the session in an\textbf{\ R Markdown}
 document.\footnote{The\textbf{\ R Commander} can also optionally create a
-\textbf{knitr} \textbf{LaTeX} document \citep{Xie13} and compile
+\textbf{knitr} \textbf{LaTeX} document \citep{Xie16} and compile
 it into a PDF file. This option requires a \textbf{LaTeX} installation, and is
 activated by the setting the \textbf{Rcmdr} option \texttt{use.knitr} to
 \texttt{TRUE}. see \emph{Help} $\longrightarrow$ \emph{Commander help} and
@@ -1184,7 +1195,7 @@ activated by the setting the \textbf{Rcmdr} option \texttt{use.knitr} to
 the\emph{\ R Markdown} tab for the current session, which we've scrolled to
 the top of the generated document. As its name implies, \textbf{R Markdown} is
 a simple markup language, which includes blocks of \textbf{R} commands, and
-can be used to generate HTML (i.e., web) pages. For more information about
+can be used to generate HTML (i.e., web) pages or other types of documents. For more information about
 \textbf{R Markdown}, select \emph{Help} $\longrightarrow$\ \emph{Using R
 Markdown} from the \textbf{R Commander} menus.\footnote{This and some other
 items in the \emph{Help} menu require an active Internet connection.}%
@@ -1292,12 +1303,13 @@ in asterisks (e.g., \texttt{*this is important*}) will be set in
 
 Once you have finished editing the \textbf{R Markdown} document, you can
 generate a report from it in the form of an HTML document (web page), \textbf{Word} document,
+rich text file,
 or PDF file by pressing the \emph{Generate report}
-button below the \emph{R Markdown} tab.\footnote{To generate \textbf{Word} documents you must
+button below the \emph{R Markdown} tab.\footnote{To generate \textbf{Word} or rich text file documents you must
 install \textbf{Pandoc}; to generate PDF files, you'll additionally
 need \LaTeX. To install this optional auxiliary software, use the \emph{Tools} menu.}
 An HTML report should open in your web browser, and a PDF report in your PDF viewer.
-\textbf{Word} files must be opened manually, but can be edited further.
+\textbf{Word} and rich text files must be opened manually, but can easily be edited further.
 The \textbf{R Markdown} document can be saved via the \emph{File} menu.
 
 You can also, and more conveniently, open a separate and larger editor window to edit the \textbf{R
@@ -1383,12 +1395,10 @@ command must be submitted simultaneously for execution. For serious \textbf{R}
 programming, it is preferable to use the script editors provided by the
 \textbf{Windows} and \textbf{Mac OS X} versions of \textbf{R}, or --- even
 better --- a programming editor or interactive development environment, such
-as \textbf{RStudio} $<$\texttt{www.rstudio.org}$>$.\footnote{
+as \textbf{RStudio} \href{https://www.rstudio.com/}{www.rstudio.com}.\footnote{
 The \textbf{R Commander} will run under \textbf{RStudio}, in which
 case by default \textbf{R Commander} output and messages are directed to the
-\textbf{R} console within \textbf{RStudio}, but there are some issues, such as
-partial incompatibility with the \textbf{RStudio} \emph{Plot} and \emph{Help}
-tabs.}
+\textbf{R} console within \textbf{RStudio}.}
 
 \subsection{Using R Commander Plug-ins\label{sec-plugins}}
 
