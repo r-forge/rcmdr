@@ -1,4 +1,5 @@
 \name{readXL}
+
 \alias{readXL}
 \alias{excel_sheets}
 \title{
@@ -20,7 +21,7 @@ excel_sheets(path)
 \arguments{
   \item{file, path}{path to an Excel file.}
   \item{rownames}{if \code{TRUE} (the default is \code{FALSE}), the first column in the
-    spreadsheet contains row names.}
+    spreadsheet contains row names (which must be unique---i.e., no duplicates).}
   \item{header}{if \code{TRUE} (the default), the first row in the spreadsheet contains column
     (variable) names.}
   \item{na}{character string denoting missing data; the default is the empty string, \code{""}.}

@@ -1,13 +1,13 @@
 Package: RcmdrMisc
-Version: 1.0-5
-Date: 2016-07-17
+Version: 1.0-6
+Date: 2016-08-18
 Title: R Commander Miscellaneous Functions
 Authors@R: c(person("John", "Fox", role = c("aut", "cre"), email = "jfox@mcmaster.ca"),
     person("Robert", "Muenchen", role = "ctb"),
     person("Dan", "Putler", role = "ctb")
    )
 Depends: R (>= 3.0.0), utils, car, sandwich
-Imports: abind, colorspace, Hmisc, MASS, e1071, readxl, graphics, grDevices, stats
+Imports: abind, colorspace, Hmisc, MASS, e1071, haven, readxl, graphics, grDevices, stats
 ByteCompile: yes
 Description:
   Various statistical, graphics, and data-management functions used by the Rcmdr package in the R Commander GUI for R. 
