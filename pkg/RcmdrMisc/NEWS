@@ -1,3 +1,7 @@
+Changes to Version 1.0-6
+
+  o Added readSAS() for SAS b7dat files.
+
 Changes to Version 1.0-5
 
   o Added connect argument to plotMeans() (suggestion of Graham Smith).
