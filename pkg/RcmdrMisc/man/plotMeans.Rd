@@ -9,13 +9,15 @@ on cell standard errors or standard deviations.
 }
 
 \usage{
-plotMeans(response, factor1, factor2,
-    error.bars = c("se", "sd", "conf.int", "none"), level=0.95,
-    xlab = deparse(substitute(factor1)),
-    ylab = paste("mean of", deparse(substitute(response))), 
-    legend.lab = deparse(substitute(factor2)), main = "Plot of Means", 
-    pch = 1:n.levs.2, lty = 1:n.levs.2, col = palette(), 
-    connect = TRUE, ...)
+plotMeans(response, factor1, factor2, 
+    error.bars = c("se", "sd", "conf.int", "none"),
+    level=0.95, xlab=deparse(substitute(factor1)), 
+    ylab=paste("mean of", deparse(substitute(response))),
+    legend.lab=deparse(substitute(factor2)), 
+    legend.pos=c("farright", "bottomright", "bottom", "bottomleft", 
+                 "left", "topleft", "top", "topright", "right", "center"),
+    main="Plot of Means",
+    pch=1:n.levs.2, lty=1:n.levs.2, col=palette(), connect=TRUE, ...)
 }
 
 \arguments{
@@ -31,6 +33,7 @@ plotMeans(response, factor1, factor2,
   \item{xlab}{Label for horizontal axis.}
   \item{ylab}{Label for vertical axis.}
   \item{legend.lab}{Label for legend.}
+  \item{legend.pos}{Position of legend; if \code{"farright"} (the default), extra space is left at the right of the plot.}
   \item{main}{Label for the graph.}
   \item{pch}{Plotting characters for profiles of means.}
   \item{lty}{Line types for profiles of means.}
