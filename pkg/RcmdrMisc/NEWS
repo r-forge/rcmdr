@@ -2,6 +2,8 @@ Changes to Version 1.0-6
 
   o Added readSAS() for SAS b7dat files.
   
+  o Added readStata() for improved input of Stata .dta files.
+  
   o Improvements to plotMeans() legends.
 
 Changes to Version 1.0-5
