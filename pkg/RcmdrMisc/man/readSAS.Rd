@@ -16,7 +16,7 @@ readSAS(file, rownames=FALSE,
 \arguments{
   \item{file}{path to a SAS b7dat file.}
   \item{rownames}{if \code{TRUE} (the default is \code{FALSE}), the first column in the
-    spreadsheet contains row names (which must be unique---i.e., no duplicates).}
+    data set contains row names (which must be unique---i.e., no duplicates).}
   \item{stringsAsFactors}{if \code{TRUE} then columns containing character data are converted to
     factors; the default is taken from \code{default.stringsAsFactors()}.}
 }
