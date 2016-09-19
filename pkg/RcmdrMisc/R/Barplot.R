@@ -1,6 +1,7 @@
 Barplot <- function(x, by, scale=c("frequency", "percent"), 
+                    conditional=TRUE,
                     style=c("divided", "parallel"),
-                    col=rainbow_hcl(length(levels(by))),
+                    col=if (missing(by)) "gray" else rainbow_hcl(length(levels(by))),
                     xlab=deparse(substitute(x)), 
                     legend.title=deparse(substitute(by)), ylab=scale,
                     legend.pos="topright", ...){
@@ -11,12 +12,15 @@ Barplot <- function(x, by, scale=c("frequency", "percent"),
     if (missing(by)){
         y <- table(x)
         if (scale == "percent") y <- 100*y/sum(y)
-        barplot(y, xlab=xlab, ylab=ylab, ...)
+        barplot(y, xlab=xlab, ylab=ylab, col=col, ...)
     }
     else{
         col <- col[1:length(levels(by))]
         y <- table(by, x)
-        if (scale == "percent") y <- 100*y/sum(y)
+        if (scale == "percent") {
+            y <- if (conditional) 100*apply(y, 2, function(x) x/sum(x))
+                 else 100*y/sum(y)
+        }
         barplot(y, xlab=xlab, ylab=ylab, legend.text=levels(by),
                 col=col, 
                 args.legend=list(x=legend.pos, title=legend.title, inset=0.05),
