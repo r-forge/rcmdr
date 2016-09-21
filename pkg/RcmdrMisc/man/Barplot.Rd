@@ -16,7 +16,7 @@ Barplot(x, by, scale = c("frequency", "percent"), conditional=TRUE,
   style = c("divided", "parallel"), 
   col=if (missing(by)) "gray" else rainbow_hcl(length(levels(by))),
   xlab = deparse(substitute(x)), legend.title = deparse(substitute(by)), 
-  ylab = scale, legend.pos = "topright", ...)
+  ylab = scale, main=NULL, legend.pos = "above", ...)
 }
 
 \arguments{
@@ -43,11 +43,13 @@ an optional character string providing a label for the horizontal axis.}
 an optional character string providing a title for the legend.}
   \item{ylab}{
 an optional character string providing a label for the vertical axis.}
+  \item{main}{
+an optional main title for the plot.}
   \item{legend.pos}{
 position of the legend, in a form acceptable to the \code{\link{legend}}
-function.}
+function; the default, \code{"above"}, puts the legend above the plot.}
   \item{...}{
-arguments to be based to the \code{\link{barplot}} function.}
+arguments to be passed to the \code{\link{barplot}} function.}
 }
 
 \value{
