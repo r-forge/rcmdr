@@ -52,7 +52,7 @@ Barplot <- function(x, by, scale=c("frequency", "percent"),
         }
         else barplot(y, xlab=xlab, ylab=ylab, main=main,
                 legend.text=levels(by), col=col, 
-                args.legend=list(x=legend.pos, title=legend.title, inset=0.05),
+                args.legend=list(x=legend.pos, title=legend.title, inset=0.05, bg="white"),
                 beside = style == "parallel", ...)
     }
     return(invisible(NULL))
