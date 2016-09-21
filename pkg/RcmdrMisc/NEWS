@@ -6,7 +6,7 @@ Changes to Version 1.0-6
   
   o Improvements to plotMeans() legends.
   
-  o Barplot() can now compute conditional percentages (suggestion of Beatriz Lacruz).
+  o Barplot() can now compute conditional percentages (suggestion of Beatriz Lacruz); other improvements.
 
 Changes to Version 1.0-5
 

@@ -1,4 +1,4 @@
-# last modified 2016-08-30 by J. Fox
+# last modified 2016-09-20 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
@@ -10,7 +10,7 @@ importFrom(colorspace, rainbow_hcl)
 importFrom(readxl, read_excel, excel_sheets)
 importFrom(haven, read_sas)
 importFrom(graphics, abline, arrows, axis, barplot, box, hist, legend, lines, 
-    matplot, mtext, par, plot, points, polygon, strheight, text)
+    matplot, mtext, par, plot, points, polygon, strheight, text, title)
 importFrom(grDevices, n2mfrow, palette)
 importFrom(stats, coef, complete.cases, cor, dist, formula, kmeans, 
     model.matrix, na.omit, p.adjust, pf, pt, qt, quantile, runif, sd, update)
