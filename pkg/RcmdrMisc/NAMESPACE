@@ -1,4 +1,4 @@
-# last modified 2016-09-20 by J. Fox
+# last modified 2017-01-12 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
@@ -15,7 +15,7 @@ importFrom(grDevices, n2mfrow, palette)
 importFrom(stats, coef, complete.cases, cor, dist, formula, kmeans, 
     model.matrix, na.omit, p.adjust, pf, pt, qt, quantile, runif, sd, update)
 
-export(assignCluster, Barplot, bin.var, colPercents, DeltaMethod, Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, 
+export(assignCluster, Barplot, bin.var, binVariable, colPercents, DeltaMethod, Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, 
     numSummary, partial.cor, plotDistr, plotMeans, rcorr.adjust, readXL, readSAS, readStata, reliability, rowPercents, 
     stepwise, summarySandwich, totPercents,
     dgumbel, pgumbel, qgumbel, rgumbel)

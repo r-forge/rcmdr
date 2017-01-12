@@ -10,6 +10,8 @@ Changes to Version 1.0-6
   
   o Hist() now invisibly returns a "hist" object or list of "hist" objects (suggestion of Beatriz Lacruz).
   
+  o renamed bin.var() as binVariable(), retaining bin.var() as a synomym.
+  
   o Small bug fixes.
 
 Changes to Version 1.0-5
