@@ -2,9 +2,9 @@
 
 # Author: Dan Putler (revision by J. Fox, 5 Dec 04 & 5 Mar 13)
 
-# last modified 2014-08-04
+# last modified 2017-01-12
 
-bin.var <- function (x, bins=4, method=c("intervals", "proportions", "natural"), labels=FALSE){
+binVariable <- function (x, bins=4, method=c("intervals", "proportions", "natural"), labels=FALSE){
     method <- match.arg(method)
     
     if(length(x) < bins) {
@@ -20,3 +20,5 @@ bin.var <- function (x, bins=4, method=c("intervals", "proportions", "natural"),
     }
     as.factor(x)
 }
+
+bin.var <- function(...) binVariable(...)
