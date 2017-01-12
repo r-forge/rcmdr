@@ -1,6 +1,6 @@
 # various numeric summary statistics
 
-# last modified 2014-09-04 by J. Fox
+# last modified 2016-01-12 by J. Fox
 
 numSummary <- function(data, 
     statistics=c("mean", "sd", "se(mean)", "IQR", "quantiles", "cv", "skewness", "kurtosis"),
@@ -53,7 +53,7 @@ numSummary <- function(data,
     type <- as.numeric(type)
     ngroups <- if(missing(groups)) 1 else length(grps <- levels(groups))
     quantiles <- if ("quantiles" %in% statistics) quantiles else NULL
-    quants <- if (length(quantiles) > 1) paste(100*quantiles, "%", sep="") else NULL
+    quants <- if (length(quantiles) >= 1) paste(100*quantiles, "%", sep="") else NULL
     #    quants <- paste(100*quantiles, "%", sep="")
     nquants <- length(quants)
     stats <- c(c("mean", "sd", "se(mean)", "IQR", "cv", "skewness", "kurtosis")[c("mean", "sd", "se(mean)", "IQR", "cv", "skewness", "kurtosis") %in% statistics], quants)
