@@ -26,8 +26,9 @@ Hist(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substit
 }
 
 \value{
-  This function returns \code{NULL}, and is called for its side effect ---
-  plotting a histogram.
+  This function is primarily called for its side effect ---
+  plotting a histogram or histograms --- but it also invisibly 
+  returns an object of class \code{\link{hist}} or a list of \code{hist} objects.
 }
 
 \author{John Fox \email{jfox@mcmaster.ca}}

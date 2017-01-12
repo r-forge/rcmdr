@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2016-08-18 by J. Fox
+# last modified 2017-01-12 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -23,6 +23,7 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
         hists <- lapply(levels, function(level) if (counts[level] != 0) 
             hist(x[groups == level], plot=FALSE, breaks=breaks.)
             else list(counts=0, density=0))
+        names(hists) <- levels
         ylim <- if (scale == "frequency"){
             max(sapply(hists, function(hist) max(hist$counts)))
         }
@@ -46,14 +47,18 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
                 main=paste(deparse(substitute(groups)), "=", level), breaks=breaks., ylim=c(0, ylim[level]), ...)
         }
         if (main != "") mtext(side = 3, outer = TRUE, main, cex = 1.2)
-        return(invisible(NULL))
+        return(invisible(hists))
     }
     x <- na.omit(x)
-    if (scale == "frequency") hist(x, xlab=xlab, ylab=ylab, main=main, breaks=breaks, ...)
-    else if (scale == "density") hist(x, freq=FALSE, xlab=xlab, ylab=ylab, main=main, breaks=breaks, ...)
+    if (scale == "frequency") {
+        hist <- hist(x, xlab=xlab, ylab=ylab, main=main, breaks=breaks, ...)
+    }
+    else if (scale == "density") {
+        hist <- hist(x, freq=FALSE, xlab=xlab, ylab=ylab, main=main, breaks=breaks, ...)
+    }
     else {
         n <- length(x)
-        hist(x, axes=FALSE, xlab=xlab, ylab=ylab, main=main, breaks=breaks, ...)
+        hist <- hist(x, axes=FALSE, xlab=xlab, ylab=ylab, main=main, breaks=breaks, ...)
         axis(1)
         max <- ceiling(10*par("usr")[4]/n)
         at <- if (max <= 3) (0:(2*max))/20
@@ -62,7 +67,7 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
     }
     box()
     abline(h=0)
-    invisible(NULL)
+    invisible(hist)
 }
 
 indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, ylab, ...){
