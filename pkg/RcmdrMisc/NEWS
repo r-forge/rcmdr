@@ -4,6 +4,8 @@ Changes to Version 1.0-6
   
   o Added readStata() for improved input of Stata .dta files.
   
+  o Added readSPSS() for reading SPSS .sav and (improved reading of) .por files.
+  
   o Improvements to plotMeans() legends.
   
   o Barplot() can now compute conditional percentages (suggestion of Beatriz Lacruz); other improvements.
