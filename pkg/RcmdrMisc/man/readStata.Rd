@@ -1,7 +1,7 @@
 \name{readStata}
 \alias{readStata}
 \title{
-Read a SAS b7dat Data Set
+Read a Stata Data Set
 }
 \description{
 \code{readStata} reads a Stata data set, stored in a file of type \code{.dta}, into an R data frame; it provides
