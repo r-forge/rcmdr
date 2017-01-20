@@ -1,9 +1,14 @@
-# last modified 2017-01-13 by J. Fox
+# last modified 2017-01-20 by J. Fox
 
-readSPSS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(), tolower=TRUE){
-    Data <- as.data.frame(haven::read_spss(file))
+readSPSS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(), tolower=TRUE, 
+                     use.haven=!por){
+    filename <- rev(strsplit(file, "\\.")[[1]])
+    por <- "por" == if (length(filename) > 1) filename[1] else ""
+    Data <- if (use.haven) as.data.frame(haven::read_spss(file))
+            else foreign::read.spss(file, to.data.frame=TRUE)
     if (rownames){
-        check <- length(unique(col1 <- Data[[1]])) == nrow(Data)
+        col1 <- gsub("^\ *", "", gsub("\ *$", "", Data[[1]]))
+        check <- length(unique(col1)) == nrow(Data)
         if (!check) warning ("row names are not unique, ignored")
         else {
             rownames(Data) <- col1
@@ -21,7 +26,7 @@ readSPSS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFac
         }
     }
     num.cols <- sapply(Data, is.numeric)
-    if (any(num.cols)){
+    if (use.haven && any(num.cols)){
         for (col in names(Data)[num.cols]) {
             Data[, col] <- as.numeric(Data[, col])
             Data[!is.finite(Data[, col]), col] <- NA
