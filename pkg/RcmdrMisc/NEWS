@@ -14,6 +14,8 @@ Changes to Version 1.0-6
   
   o renamed bin.var() as binVariable(), retaining bin.var() as a synomym.
   
+  o Added discretePlot() for plotting distributions of discrete numeric variables (after a suggestion of Beatriz Lacruz).
+  
   o Small bug fixes.
 
 Changes to Version 1.0-5
