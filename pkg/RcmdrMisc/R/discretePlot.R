@@ -10,16 +10,19 @@ discretePlot <- function(x, by, scale=c("frequency", "percent"), xlab=deparse(su
         abline(h=0, col="gray")
     }
     if (missing(by)){
-        dp(x, scale, xlab, ylab, main)
+        dp(na.omit(x), scale, xlab, ylab, main)
     }
     else{
+        by.var <- deparse(substitute(by))
+        complete <- complete.cases(x, by)
+        x <- x[complete]
+        by <- by[complete]
         max.y <- if (scale == "frequency") max(table(x, by))
             else {
                 tab <- colPercents(table(x, by))
                 max(tab[1:(nrow(tab) - 2), ])
             }
         xlim  <- range(x)
-        by.var <- deparse(substitute(by))
         levels <- levels(by)
         save.par <- par(mfcol=c(length(levels), 1))
         on.exit(par(save.par))
