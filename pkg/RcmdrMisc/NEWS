@@ -16,6 +16,8 @@ Changes to Version 1.0-6
   
   o Added discretePlot() for plotting distributions of discrete numeric variables (after a suggestion of Beatriz Lacruz).
   
+  o Added plotBoot() for plotting bootstrap distributions.
+  
   o Small bug fixes.
 
 Changes to Version 1.0-5
