@@ -1,4 +1,4 @@
-# last modified 2017-01-24 by J. Fox
+# last modified 2017-02-06 by J. Fox
 
 importFrom(Hmisc, rcorr, print.rcorr)
 importFrom(MASS, stepAIC)
@@ -18,7 +18,8 @@ importFrom(stats, coef, complete.cases, cor, dist, formula, kmeans,
 
 export(assignCluster, Barplot, bin.var, binVariable, colPercents, DeltaMethod, discretePlot,
     Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, 
-    numSummary, partial.cor, plotDistr, plotMeans, rcorr.adjust, readXL, readSAS, readSPSS, readStata, reliability, rowPercents, 
+    numSummary, partial.cor, plotBoot, plotDistr, plotMeans, rcorr.adjust, 
+    readXL, readSAS, readSPSS, readStata, reliability, rowPercents, 
     stepwise, summarySandwich, totPercents,
     dgumbel, pgumbel, qgumbel, rgumbel)
 
@@ -29,5 +30,4 @@ S3method(print, partial.cor)
 S3method(print, reliability)
 S3method(print, rcorr.adjust)
 S3method(summarySandwich, lm)
-
-
+S3method(plotBoot, boot)
