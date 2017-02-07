@@ -1,3 +1,5 @@
+# last modified 2017-02-07
+
 plotBoot <- function(object, confint=NULL, ...){
   UseMethod("plotBoot")
 }
@@ -13,7 +15,7 @@ plotBoot.boot <- function(object, confint=NULL, ...){
   t <- object$t
   if (any(is.na(t))){
     t <- na.omit(t)
-    message("Note: bootstrap samples with missing parameter values suppressed")
+    warning("bootstrap samples with missing parameter values suppressed")
   }
   npars <- length(t0)
   pars <- names(t0)
