@@ -35,11 +35,8 @@ John Fox \email{jfox@mcmaster.ca}
 }
 
 \examples{
-if (require(car) && require(boot)){
-  local({
-    mod <- lm(prestige ~ income + education + type, data=Duncan)
-    plotBoot(Boot(mod))
-  })
+\dontrun{
+plotBoot(Boot(lm(prestige ~ income + education + type, data=Duncan)))
 }
 }
 
