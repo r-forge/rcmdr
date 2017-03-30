@@ -18,6 +18,8 @@ Changes to Version 1.0-6
   
   o Added plotBoot() for plotting bootstrap distributions.
   
+  o indexplot() can now plot multiple variables (suggestion of Manuel Munoz).
+  
   o Small bug fixes.
 
 Changes to Version 1.0-5
