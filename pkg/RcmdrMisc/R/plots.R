@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2017-01-12 by J. Fox
+# last modified 2017-03-30 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -71,6 +71,28 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
 }
 
 indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, ylab, ...){
+    if (is.data.frame(x)) {
+        if (missing(labels)) labels <- rownames(x)
+        x <- as.matrix(x)
+    }
+    if (is.matrix(x)){
+        ids <- NULL
+        mfrow <- par(mfrow=c(ncol(x), 1))
+        on.exit(par(mfrow)) 
+        if (missing(labels)) labels <- 1:nrow(x)
+        if (is.null(colnames(x))) colnames(x) <- paste0("Var", 1:ncol(x))
+        for (i in 1:ncol(x)) {
+            id <- indexplot(x[, i], labels=labels, id.method=id.method, type=type, id.n=id.n,
+                            ylab=colnames(x)[i])
+            ids <- union(ids, id)
+        }
+        if (is.null(ids) || any(is.na(x))) return(invisible(NULL)) else {
+            ids <- sort(ids)
+            names(ids) <- labels[ids]
+            if (all(ids == names(ids))) names(ids) <- NULL
+            return(ids)
+        }
+    }
     if (missing(ylab)) ylab <- deparse(substitute(x))
     plot(x, type=type, ylab=ylab, xlab="Observation Index", ...)
     if (par("usr")[3] <= 0) abline(h=0, col='gray')
