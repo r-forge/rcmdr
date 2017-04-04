@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2017-03-30 by J. Fox
+# last modified 2017-04-04 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -83,7 +83,7 @@ indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, y
         if (is.null(colnames(x))) colnames(x) <- paste0("Var", 1:ncol(x))
         for (i in 1:ncol(x)) {
             id <- indexplot(x[, i], labels=labels, id.method=id.method, type=type, id.n=id.n,
-                            ylab=colnames(x)[i])
+                            ylab=if (missing(ylab)) colnames(x)[i] else ylab, ...)
             ids <- union(ids, id)
         }
         if (is.null(ids) || any(is.na(x))) return(invisible(NULL)) else {
