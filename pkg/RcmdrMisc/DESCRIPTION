@@ -1,13 +1,14 @@
 Package: RcmdrMisc
 Version: 1.0-6
-Date: 2017-04-07
+Date: 2017-04-16
 Title: R Commander Miscellaneous Functions
 Authors@R: c(person("John", "Fox", role = c("aut", "cre"), email = "jfox@mcmaster.ca"),
     person("Robert", "Muenchen", role = "ctb"),
     person("Dan", "Putler", role = "ctb")
    )
 Depends: R (>= 3.0.0), utils, car, sandwich
-Imports: abind, colorspace, Hmisc, MASS, e1071, foreign, haven, readstata13, readxl, graphics, grDevices, stats
+Imports: abind, colorspace, Hmisc, MASS, e1071, foreign, haven, readstata13, readxl, graphics, 
+    grDevices, stats, nortest
 Suggests: boot, datasets
 ByteCompile: yes
 Description:
