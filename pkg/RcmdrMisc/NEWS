@@ -22,6 +22,8 @@ Changes to Version 1.0-6
   
   o Added binnedCounts() for binned frequency distribution of a numeric variable (suggestion of Manuel Munoz).
   
+  o Added normalityTests() for various tests of normality.
+  
   o Small bug fixes.
 
 Changes to Version 1.0-5
