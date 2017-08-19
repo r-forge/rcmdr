@@ -1,6 +1,6 @@
 Package: RcmdrMisc
 Version: 1.0-6
-Date: 2017-04-16
+Date: 2017-08-19
 Title: R Commander Miscellaneous Functions
 Authors@R: c(person("John", "Fox", role = c("aut", "cre"), email = "jfox@mcmaster.ca"),
     person("Robert", "Muenchen", role = "ctb"),
@@ -14,4 +14,4 @@ ByteCompile: yes
 Description:
   Various statistical, graphics, and data-management functions used by the Rcmdr package in the R Commander GUI for R. 
 License: GPL (>= 2)
-URL: http://www.r-project.org, http://socserv.socsci.mcmaster.ca/jfox/
+URL: https://www.r-project.org, http://socserv.socsci.mcmaster.ca/jfox/
