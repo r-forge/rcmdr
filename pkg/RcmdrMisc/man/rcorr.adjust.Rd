@@ -46,8 +46,8 @@ John Fox, adapting code from Robert A. Muenchen.
 \examples{
 if (require(car)){
     data(Mroz)
-    rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")])
-    rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")], type="spearman")
+    print(rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")]))
+    print(rcorr.adjust(Mroz[,c("k5", "k618", "age", "lwg", "inc")], type="spearman"))
     }
 }
 

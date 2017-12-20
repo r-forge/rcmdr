@@ -1,6 +1,6 @@
-# last modified 2017-04-16 by J. Fox
+# last modified 2017-12-20 by J. Fox
 
-importFrom(Hmisc, rcorr, print.rcorr)
+importFrom(Hmisc, rcorr)
 importFrom(MASS, stepAIC)
 importFrom(abind, abind)
 importFrom(e1071, skewness, kurtosis)
