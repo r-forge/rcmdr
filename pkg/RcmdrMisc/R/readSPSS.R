@@ -1,11 +1,11 @@
-# last modified 2017-01-20 by J. Fox
+# last modified 2018-02-20 by J. Fox
 
 readSPSS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(), tolower=TRUE, 
-                     use.haven=!por){
+                     use.value.labels=TRUE, use.haven=!por){
     filename <- rev(strsplit(file, "\\.")[[1]])
     por <- "por" == if (length(filename) > 1) filename[1] else ""
     Data <- if (use.haven) as.data.frame(haven::read_spss(file))
-            else foreign::read.spss(file, to.data.frame=TRUE)
+            else foreign::read.spss(file, to.data.frame=TRUE, use.value.labels=use.value.labels)
     if (rownames){
         col1 <- gsub("^\ *", "", gsub("\ *$", "", Data[[1]]))
         check <- length(unique(col1)) == nrow(Data)
@@ -14,6 +14,22 @@ readSPSS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFac
             rownames(Data) <- col1
             Data[[1]] <- NULL
         }
+    }
+    if (use.haven && use.value.labels){
+      na <- as.character(NA)
+      n <- nrow(Data)
+      for (col in names(Data)){
+        var <- Data[, col]
+        if (!is.null(labs <- attr(var, "labels"))){
+          if (length(labs) < length(unique(var))) next
+          nms <- names(labs)
+          var2 <- rep(na, n)
+          for (i in seq_along(labs)){
+            var2[var == labs[i]] <- nms[i]
+          }
+          Data[, col] <- var2
+        }
+      }
     }
     if (stringsAsFactors){
         char.cols <- sapply(Data, class) == "character"
