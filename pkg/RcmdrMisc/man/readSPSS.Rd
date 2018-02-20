@@ -10,7 +10,7 @@ a front end to the \code{\link{read_spss}} function in the \pkg{haven} package a
 
 \usage{
 readSPSS(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(),
-  tolower=TRUE, use.haven=!por)
+  tolower=TRUE, use.value.labels=TRUE, use.haven=!por)
 }
 
 \arguments{
@@ -21,6 +21,11 @@ readSPSS(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(),
     factors and factors are created from SPSS value labels; 
     the default is taken from \code{default.stringsAsFactors()}.}
   \item{tolower}{change variable names to lowercase, default \code{TRUE}.}
+  \item{use.value.labels}{if \code{TRUE}, the default, variables with value labels in the SPSS
+    data set will become either factors or character variables (depending on the \code{stringsAsFactors}
+    argument) with the value labels as their levels or values. As for \code{\link[foreign]{read.spss}}, 
+    this is only done if there are at least as many labels as values of the variable 
+    (and values without a matching label are returned as \code{NA}).}
   \item{use.haven}{use \code{\link{read_spss}} from the \pkg{haven} package to read the file,
     in preference to \code{\link{read.spss}} from the \pkg{foreign} package; the default is
     \code{TRUE} for a \code{.sav} file and \code{FALSE} for a \code{.por} file.}
