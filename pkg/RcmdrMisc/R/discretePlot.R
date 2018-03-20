@@ -4,7 +4,7 @@ discretePlot <- function(x, by, scale=c("frequency", "percent"), xlab=deparse(su
     dp <- function(x, scale, xlab, ylab, main, xlim=range(x), ylim=c(0, max(y))){
         y <- as.vector(table(x))
         if (scale == "percent") y <- 100*y/sum(y)
-        x <- unique(x)
+        x <- sort(unique(x))
         plot(x, y, type="h", xlab=xlab, ylab=ylab, main=main, xlim=xlim, ylim=ylim)
         points(x, y, pch=16)
         abline(h=0, col="gray")
