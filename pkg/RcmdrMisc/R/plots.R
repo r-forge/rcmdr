@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2017-04-04 by J. Fox
+# last modified 3018-03-20 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -96,7 +96,7 @@ indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, y
     if (missing(ylab)) ylab <- deparse(substitute(x))
     plot(x, type=type, ylab=ylab, xlab="Observation Index", ...)
     if (par("usr")[3] <= 0) abline(h=0, col='gray')
-    ids <- showLabels(seq_along(x), x, labels=labels, id.method=id.method, id.n=id.n)
+    ids <- showLabels(seq_along(x), x, labels=labels, method=id.method, n=id.n)
     if (is.null(ids)) return(invisible(NULL)) else return(ids)
 }
 
