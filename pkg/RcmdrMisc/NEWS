@@ -1,3 +1,7 @@
+Changes to Version 1.0-9
+
+  o Fixed bug in discretePlot() (reported by Felipe Rafael Ribeiro Melo).
+
 Changes to Version 1.0-8
 
   o readSPSS() now can process value labels when haven::read_SPSS() is called; new use.value.labels argument, defaults to TRUE (after report by Manuel Munoz Marquez).
