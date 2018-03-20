@@ -1,3 +1,7 @@
+Changes to Version 1.0-10
+
+  o Make indexplot() compatible with car 3.0-0.
+
 Changes to Version 1.0-9
 
   o Fixed bug in discretePlot() (reported by Felipe Rafael Ribeiro Melo).
