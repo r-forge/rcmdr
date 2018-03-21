@@ -6,7 +6,7 @@ Authors@R: c(person("John", "Fox", role = c("aut", "cre"), email = "jfox@mcmaste
     person("Robert", "Muenchen", role = "ctb"),
     person("Dan", "Putler", role = "ctb")
    )
-Depends: R (>= 3.0.0), utils, car (>=3.0.0), sandwich
+Depends: R (>= 3.0.0), utils, car (>= 3.0-0), sandwich
 Imports: abind, colorspace, Hmisc (>= 4.1-0), MASS, e1071, foreign, haven, readstata13, readxl, graphics, 
     grDevices, stats, nortest
 Suggests: boot, datasets
