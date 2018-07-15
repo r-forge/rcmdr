@@ -1,4 +1,4 @@
-binnedCounts <- function(x, breaks="Sturges", name=deparse(substitute(x))){
+binnedCounts <- function(x, breaks="Sturges", round.percents=2, name=deparse(substitute(x))){
     if (is.data.frame(x)) x <- as.matrix(x)
     if (is.matrix(x)) {
         names <- colnames(x)
@@ -9,10 +9,16 @@ binnedCounts <- function(x, breaks="Sturges", name=deparse(substitute(x))){
         return(invisible(NULL))
     }
     dist <- hist(x, breaks=breaks, plot=FALSE)
-    counts <- dist$counts
+    Count <- dist$counts
     breaks <- dist$breaks
-    names(counts) <- paste0("(", breaks[1:(length(breaks) - 1)], ", ", breaks[-1], "]")
-    cat("distribution of", name, "\n")
-    print(counts)
-    return(invisible(counts))
+    tot <- sum(Count)
+    Percent <- round(100*Count/tot, round.percents)
+    tot.percent <- round(sum(Percent), round.percents)
+    names(Count) <- paste0("(", breaks[1:(length(breaks) - 1)], ", ", breaks[-1], "]")
+    table <- cbind(Count, Percent)
+    table <- rbind(table, c(tot, tot.percent))
+    rownames(table)[nrow(table)] <- "Total"
+    cat("Binned distribution of", name, "\n")
+    print(table)
+    return(invisible(Count))
 }
