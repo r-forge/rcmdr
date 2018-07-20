@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 3018-03-20 by J. Fox
+# last modified 2018-07-21 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -70,10 +70,23 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
     invisible(hist)
 }
 
-indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, ylab, ...){
+indexplot <- function(x, groups, labels=seq_along(x), id.method="y", type="h", id.n=0, ylab, legend="topright", title, col=palette(), ...){
     if (is.data.frame(x)) {
         if (missing(labels)) labels <- rownames(x)
         x <- as.matrix(x)
+    }
+    if (!missing(groups)){
+        if (missing(title)) title <- deparse(substitute(groups))
+        if (!is.factor(groups)) groups <- as.factor(groups)
+        groups <- addNA(groups, ifany=TRUE)
+        grps <- levels(groups)
+        grps[is.na(grps)] <- "NA"
+        levels(groups) <- grps
+        if (length(grps) > length(col)) stop("too few colors to plot groups")
+    }
+    else {
+        grps <- NULL
+        legend <- FALSE
     }
     if (is.matrix(x)){
         ids <- NULL
@@ -82,9 +95,10 @@ indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, y
         if (missing(labels)) labels <- 1:nrow(x)
         if (is.null(colnames(x))) colnames(x) <- paste0("Var", 1:ncol(x))
         for (i in 1:ncol(x)) {
-            id <- indexplot(x[, i], labels=labels, id.method=id.method, type=type, id.n=id.n,
-                            ylab=if (missing(ylab)) colnames(x)[i] else ylab, ...)
+            id <- indexplot(x[, i], groups=groups, labels=labels, id.method=id.method, type=type, id.n=id.n,
+                            ylab=if (missing(ylab)) colnames(x)[i] else ylab, legend=legend, title=title, ...)
             ids <- union(ids, id)
+            legend <- FALSE
         }
         if (is.null(ids) || any(is.na(x))) return(invisible(NULL)) else {
             ids <- sort(ids)
@@ -94,7 +108,12 @@ indexplot <- function(x, labels=seq_along(x), id.method="y", type="h", id.n=0, y
         }
     }
     if (missing(ylab)) ylab <- deparse(substitute(x))
-    plot(x, type=type, ylab=ylab, xlab="Observation Index", ...)
+    plot(x, type=type, col=if (is.null(grps)) col[1] else col[as.numeric(groups)],
+         ylab=ylab, xlab="Observation Index", ...)
+    if (!isFALSE(legend)){
+        legend(legend, title=title, bty="n",
+               legend=grps, col=palette()[1:length(grps)], lty=1, horiz=TRUE, xpd=TRUE)
+    }
     if (par("usr")[3] <= 0) abline(h=0, col='gray')
     ids <- showLabels(seq_along(x), x, labels=labels, method=id.method, n=id.n)
     if (is.null(ids)) return(invisible(NULL)) else return(ids)

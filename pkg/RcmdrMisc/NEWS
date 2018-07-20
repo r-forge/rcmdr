@@ -5,6 +5,8 @@ Changes to Version 2.5-0
   o Show axis ticks at observed values in discretePlot() (suggestion of Beatriz Lacruz Casaucau).
   
   o binnedCounts() reports percentage as well as frequency distribution (suggestion of Beatriz Lacruz Casaucau).
+  
+  o indexplot() accepts groups argument.
 
 Changes to Version 1.0-10
 
