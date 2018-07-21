@@ -103,7 +103,7 @@ indexplot <- function(x, groups, labels=seq_along(x), id.method="y", type="h", i
         if (is.null(ids) || any(is.na(x))) return(invisible(NULL)) else {
             ids <- sort(ids)
             names(ids) <- labels[ids]
-            if (all(ids == names(ids))) names(ids) <- NULL
+            if (any(is.na(names(ids))) || all(ids == names(ids))) names(ids) <- NULL
             return(ids)
         }
     }
