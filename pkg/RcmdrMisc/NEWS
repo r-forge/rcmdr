@@ -1,3 +1,7 @@
+Changes to Version 2.5-1
+
+  o Depend on R >= version 3.5.0 because of use of isFALSE() (at request of CRAN).
+
 Changes to Version 2.5-0
 
   o Synchronize version numbers with minor versions of the Rcmdr package.
