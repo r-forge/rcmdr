@@ -1,5 +1,5 @@
 discreteCounts <- function(x, round.percents=2, name=deparse(substitute(x)), 
-                           max.values=min(round(2*sqrt(length(x))), 100)){
+                           max.values=min(round(2*sqrt(length(x))), round(10*log10(length(x))), 100)){
     if (is.data.frame(x)) x <- as.matrix(x)
     if (is.matrix(x)) {
         names <- colnames(x)

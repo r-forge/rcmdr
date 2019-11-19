@@ -12,7 +12,7 @@ in a numeric matrix or data frame.
 
 \usage{
 discreteCounts(x, round.percents=2, name=deparse(substitute(x)),
-  max.values=min(round(2*sqrt(length(x))), 100))
+  max.values=min(round(2*sqrt(length(x))), round(10*log10(length(x))), 100))
 }
 
 \arguments{
@@ -23,8 +23,9 @@ discreteCounts(x, round.percents=2, name=deparse(substitute(x)),
   
   \item{name}{name for the variable; only used for vector argument \code{x}.}
   
-  \item{max.values}{maximum number of unique values (default is the smaller of 
-  twice the square root of the number of elements in \code{x} and \code{100}); 
+  \item{max.values}{maximum number of unique values (default is the smallest of 
+  twice the square root of the number of elements in \code{x}, 10 times the log10 of
+  the number of elements, and \code{100}); 
   if exceeded, an error is reported.}
   
 }
