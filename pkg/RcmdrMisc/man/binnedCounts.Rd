@@ -2,7 +2,7 @@
 \alias{binnedCounts}
 
 \title{
-Binned Frequency Distribution of Numeric Variables
+Binned Frequency Distributions of Numeric Variables
 }
 
 \description{
@@ -33,7 +33,7 @@ John Fox \email{jfox@mcmaster.ca}
 }
 
 \seealso{
-\code{\link{hist}}
+\code{\link{hist}}, \code{\link{discreteCounts}}
 }
 
 \examples{
