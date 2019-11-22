@@ -68,17 +68,14 @@ John Fox \email{jfox@mcmaster.ca}
 }
 
 \examples{
-if (require(car)){
-    data(Mroz)
-    with(Mroz, {
-      Barplot(wc)
-      Barplot(wc, col="lightblue")
-      Barplot(wc, by=hc)
-      Barplot(wc, by=hc, scale="percent")
-      Barplot(wc, by=hc, style="parallel", 
-        scale="percent", legend.pos="center")
-    })
-}
+with(Mroz, {
+  Barplot(wc)
+  Barplot(wc, col="lightblue")
+  Barplot(wc, by=hc)
+  Barplot(wc, by=hc, scale="percent")
+  Barplot(wc, by=hc, style="parallel", 
+    scale="percent", legend.pos="center")
+})
 }
 
 \keyword{hplot}
