@@ -25,7 +25,7 @@ Barplot <- function(x, by, scale=c("frequency", "percent"),
         if (scale == "percent") y <- 100*y/sum(y)
         mids <- barplot(y, xlab=xlab, ylab=ylab, col=col, main=main, ...)
         if(label.bars){
-            labels <- if (scale == "percent") paste(round(y), "%") else y
+            labels <- if (scale == "percent") paste0(round(y), "%") else y
             text(mids, y, labels, pos=1, offset=0.5)
         }
     }
@@ -60,7 +60,7 @@ Barplot <- function(x, by, scale=c("frequency", "percent"),
                              beside = style == "parallel", ...)
         if (label.bars){
             yy <- if (is.matrix(mids)) as.vector(y) else as.vector(apply(y, 2, cumsum))
-            labels <- if (scale == "percent") paste(round(as.vector(y)), "%") else as.vector(y)
+            labels <- if (scale == "percent") paste0(round(as.vector(y)), "%") else as.vector(y)
             xx <- if (is.vector(mids)) rep(mids, each=ncol(y)) else as.vector(mids)
             text(xx, yy, labels, pos=1, offset=0.5)
         }
