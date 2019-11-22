@@ -1,4 +1,4 @@
-# last modified 2019-11-20 by J. Fox
+# last modified 2019-11-21 by J. Fox
 
 importFrom(Hmisc, rcorr)
 importFrom(MASS, stepAIC)
@@ -11,7 +11,7 @@ importFrom(readxl, read_excel, excel_sheets)
 importFrom(haven, read_sas, read_spss)
 importFrom(foreign, read.spss)
 importFrom(graphics, abline, arrows, axis, barplot, box, hist, legend, lines, 
-    matplot, mtext, par, plot, points, polygon, strheight, text, title)
+    matplot, mtext, par, pie, plot, points, polygon, strheight, text, title)
 importFrom(grDevices, n2mfrow, palette)
 importFrom(stats, coef, complete.cases, cor, dist, formula, kmeans, 
     model.matrix, na.omit, shapiro.test, p.adjust, pf, pt, qt, quantile, runif, sd, update)
@@ -20,7 +20,7 @@ importFrom(nortest, ad.test, cvm.test, lillie.test, pearson.test, sf.test)
 export(assignCluster, Barplot, bin.var, binnedCounts, binVariable, 
     colPercents, DeltaMethod, discreteCounts, discretePlot,
     Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, normalityTest,
-    numSummary, partial.cor, plotBoot, plotDistr, plotMeans, rcorr.adjust, 
+    numSummary, partial.cor, piechart, plotBoot, plotDistr, plotMeans, rcorr.adjust, 
     readXL, readSAS, readSPSS, readStata, reliability, rowPercents, 
     stepwise, summarySandwich, totPercents,
     dgumbel, pgumbel, qgumbel, rgumbel)
