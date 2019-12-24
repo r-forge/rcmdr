@@ -70,9 +70,9 @@ John Fox \email{jfox@mcmaster.ca}
 \examples{
 with(Mroz, {
   Barplot(wc)
-  Barplot(wc, col="lightblue")
+  Barplot(wc, col="lightblue", label.bars=TRUE)
   Barplot(wc, by=hc)
-  Barplot(wc, by=hc, scale="percent")
+  Barplot(wc, by=hc, scale="percent", label.bars=TRUE)
   Barplot(wc, by=hc, style="parallel", 
     scale="percent", legend.pos="center")
 })
