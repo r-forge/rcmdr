@@ -4,6 +4,8 @@ Changes to Version 2.7-0
   
   o Added counts/percents to bars in Barplot() (suggestion of Ethan Harris).
   
+  o Fixed DeltaMethod() so that it doesn't ignore the level argument (reported by on de Haan).
+  
   o Small improvements.
 
 Changes to Version 2.5-1

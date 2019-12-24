@@ -1,10 +1,12 @@
+# last modified 2019-12-24
+
 Barplot <- function(x, by, scale=c("frequency", "percent"), 
                     conditional=TRUE,
                     style=c("divided", "parallel"),
                     col=if (missing(by)) "gray" else rainbow_hcl(length(levels(by))),
                     xlab=deparse(substitute(x)), 
                     legend.title=deparse(substitute(by)), ylab=scale, main=NULL,
-                    legend.pos="above", label.bars=TRUE, ...){
+                    legend.pos="above", label.bars=FALSE, ...){
     find.legend.columns <- function(n, target=min(4, n)){
         rem <- n %% target
         if (rem != 0 && rem < target/2) target <- target - 1
