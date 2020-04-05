@@ -39,30 +39,41 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
   computeMeans <- function(data){
     formula <- paste(response.name, " ~", paste(c(within.names, between.names), collapse="+"))
     means <- Tapply(formula, "mean", data=data)
-    means <- as.data.frame(ftable(means))
-    names(means)[ncol(means)] <- response.name
+    if(length(dim(means)) > 1){
+      means <- as.data.frame(ftable(means))
+      names(means)[ncol(means)] <- response.name
+    } else {
+      means <- data.frame(names(means), means)
+      names(means) <- c(within.names, response.name)
+    }
     means
   }
   
   rmPlot <- function(data){
-    n.levels <- sapply(data[, - ncol(data)], function(x) length(levels(x)))
-    fnames <- names(data)[- ncol(data)]
+    n.levels <- sapply(data[, - ncol(data), drop=FALSE], function(x) length(levels(x)))
+    n.factors <- length(n.levels)
+    fnames <- names(data)[- ncol(data), drop=FALSE]
     trace <- if (is.na(trace)) which.min(n.levels) else which(fnames == trace)
     xvar <- if (is.na(xvar)) which.max(n.levels) else which(fnames == xvar)
-    if (trace == xvar) stop("trace and xvar factors are identical: ", fnames[trace])
+    if (n.factors == 1) trace <- NULL
+    if (!is.null(trace) && trace == xvar) stop("trace and xvar factors are identical: ", fnames[trace])
     form <- paste(response.name, " ~", fnames[xvar], 
-                  if (length(n.levels) > 2) "|", paste(fnames[-c(trace, xvar)], collapse="+"))
+                  if (n.factors > 2) "|", paste(fnames[-c(trace, xvar)], collapse="+"))
     tr.levels <- n.levels[trace]
-    xyplot(as.formula(form),
-           groups=data[[trace]], 
-           type="b", lty=1:tr.levels, pch=1:tr.levels, col=col[1:tr.levels], cex=1.25,
-           strip=function(...) strip.default(strip.names=c(TRUE, TRUE), ...),
-           data=data,
-           key=list(title=fnames[trace], cex.title=1,
-                    text=list(levels(data[[trace]])),
-                    lines=list(lty=1:tr.levels, col=col[1:tr.levels]),
-                    points=list(pch=1:tr.levels, col=col[1:tr.levels], cex=1.25))
-           )
+    if(!is.null(trace)){
+      xyplot(as.formula(form),
+             groups = if (!is.null(trace)) data[[trace]] else 1, 
+             type="b", lty=1:tr.levels, pch=1:tr.levels, col=col[1:tr.levels], cex=1.25,
+             strip=function(...) strip.default(strip.names=c(TRUE, TRUE), ...),
+             data=data,
+             key=if (!is.null(trace)) list(title=fnames[trace], cex.title=1,
+                      text=list(levels(data[[trace]])),
+                      lines=list(lty=1:tr.levels, col=col[1:tr.levels]),
+                      points=list(pch=1:tr.levels, col=col[1:tr.levels], cex=1.25))
+             )
+    } else {
+      xyplot(as.formula(form), type="b", lty=1, pch=1, col=col[1], cex=1,25, data=data)
+    }
   }
   
   Long <- reshapeW2L(data)
