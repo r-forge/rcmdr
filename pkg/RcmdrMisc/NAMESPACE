@@ -1,10 +1,10 @@
-# last modified 2019-11-21 by J. Fox
+# last modified 2020-04-04 by J. Fox
 
 importFrom(Hmisc, rcorr)
 importFrom(MASS, stepAIC)
 importFrom(abind, abind)
 importFrom(e1071, skewness, kurtosis)
-importFrom(car, showLabels, hccm, linearHypothesis, deltaMethod)
+importFrom(car, showLabels, hccm, linearHypothesis, deltaMethod, Tapply)
 importFrom(sandwich, vcovHAC)
 importFrom(colorspace, rainbow_hcl)
 importFrom(readxl, read_excel, excel_sheets)
@@ -14,14 +14,16 @@ importFrom(graphics, abline, arrows, axis, barplot, box, hist, legend, lines,
     matplot, mtext, par, pie, plot, points, polygon, strheight, text, title)
 importFrom(grDevices, n2mfrow, palette)
 importFrom(stats, coef, complete.cases, cor, dist, formula, kmeans, 
-    model.matrix, na.omit, shapiro.test, p.adjust, pf, pt, qt, quantile, runif, sd, update)
+    model.matrix, na.omit, shapiro.test, p.adjust, pf, pt, qt, quantile, runif, sd, update,
+    as.formula, ftable, reshape)
 importFrom(nortest, ad.test, cvm.test, lillie.test, pearson.test, sf.test)
+importFrom(lattice, xyplot, strip.default)
 
 export(assignCluster, Barplot, bin.var, binnedCounts, binVariable, 
     colPercents, DeltaMethod, discreteCounts, discretePlot,
     Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, normalityTest,
     numSummary, partial.cor, piechart, plotBoot, plotDistr, plotMeans, rcorr.adjust, 
-    readXL, readSAS, readSPSS, readStata, reliability, rowPercents, 
+    readXL, readSAS, readSPSS, readStata, reliability, rowPercents, repeatedMeasuresPlot,
     stepwise, summarySandwich, totPercents,
     dgumbel, pgumbel, qgumbel, rgumbel)
 
