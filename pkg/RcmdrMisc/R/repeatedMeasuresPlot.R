@@ -50,34 +50,29 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
   }
   
   rmPlot <- function(data) {
-    n.levels <-
-      sapply(data[,-ncol(data), drop = FALSE], function(x)
+    n.levels <-sapply(data[,-ncol(data), drop = FALSE], function(x)
         length(levels(x)))
     n.factors <- length(n.levels)
     fnames <- names(data)[-ncol(data), drop = FALSE]
-    trace <- if (is.na(trace)) {
-      wnames <- if (!is.na(xvar)) within.names[!(fnames == xvar)] else within.names
-      if (length(within.names) == 1 && n.factors > 1) {
-        which.min(n.levels[!(fnames == within.names)])
-      } else {
-        if (length(wnames) > 0) which.min(n.levels[wnames]) else NULL
-      }
-    } else {
-      which(fnames == trace)
+    if (is.na(trace)) {
+      wnames <- if (!is.na(xvar)) within.names[!(within.names == xvar)] else within.names
+      trace <- if (length(wnames) > 0) wnames[which.min(n.levels[wnames])] else NULL
     }
-    xvar <- if (is.na(xvar)) {
-      wnames <- if (!is.na(trace)) within.names[!(fnames == trace)] else within.names
-      which.max(n.levels[wnames])
-    } else {
-      which(fnames == xvar)
+    if (is.na(xvar)) {
+      wnames <- if (!is.na(trace)) within.names[!(within.names == trace)] else within.names
+      xvar <- wnames[which.max(n.levels[wnames])]
+    } 
+    if (length(within.names) == 1 && length(xvar) == 0){
+      xvar <- within.names
+      trace <- NULL
     }
-    if (n.factors == 1 || trace == xvar) trace <- NULL
+    if (!is.null(trace) && trace == xvar) trace <- NULL
     form <- paste(response.name,
                   " ~",
-                  fnames[xvar],
-                  if (n.factors > 2)
+                  xvar,
+                  if (n.factors > 1 + !is.null(trace))
                     "|",
-                  paste(fnames[-c(trace, xvar)], collapse = "+"))
+                  paste(setdiff(fnames, c(trace, xvar)), collapse = "+"))
     tr.levels <- n.levels[trace]
     if (!is.null(trace)) {
       xyplot(
@@ -97,7 +92,7 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
         ylab = paste("mean", response.name),
         key = if (!is.null(trace))
           list(
-            title = fnames[trace],
+            title = trace,
             cex.title = 1,
             text = list(levels(data[[trace]])),
             lines = list(lty = 1:tr.levels, col = col[1:tr.levels]),
