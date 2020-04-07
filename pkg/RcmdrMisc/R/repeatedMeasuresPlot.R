@@ -1,4 +1,4 @@
-# last modified: 2020-04-04
+# last modified: 2020-04-06
 
 repeatedMeasuresPlot <- function(data, within, within.names, within.levels, between.names=NULL,
                                  response.name="score", trace, xvar, col=palette()[-1]){
@@ -66,6 +66,7 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
              type="b", lty=1:tr.levels, pch=1:tr.levels, col=col[1:tr.levels], cex=1.25,
              strip=function(...) strip.default(strip.names=c(TRUE, TRUE), ...),
              data=data,
+             ylab=paste("mean", response.name),
              key=if (!is.null(trace)) list(title=fnames[trace], cex.title=1,
                       text=list(levels(data[[trace]])),
                       lines=list(lty=1:tr.levels, col=col[1:tr.levels]),
