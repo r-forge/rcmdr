@@ -9,7 +9,8 @@ Creates a means plot for a repeated-measures ANOVA design with one or two within
 }
 \usage{
 repeatedMeasuresPlot(data, within, within.names, within.levels, 
-    between.names = NULL, response.name = "score", trace, xvar, col = palette()[-1])
+    between.names = NULL, response.name = "score", trace, xvar, 
+    col = palette()[-1], print.tables = FALSE)
 }
 
 \arguments{
@@ -22,6 +23,8 @@ repeatedMeasuresPlot(data, within, within.names, within.levels,
   \item{trace}{optional quoted name of the factor to define profiles of means within each panel of the graph; the default is the within-subjects factor with the smaller number of levels, if there are two, or not used if there is one.}
   \item{xvar}{optional quoted name of the factor to define the horizontal axis of each panel; the default is the within-subjects factor with the larger number of levels.}
   \item{col}{vector of colors for the profiles of means; the default is given by \code{palette()}, starting at the second color.}
+  \item{print.tables}{if \code{TRUE} (the default is \code{FALSE}), print tables of means
+  and standard deviations of the response in addition to drawing the graph of means.}
 }
 
 \value{A \code{"trellis"} object, which normally is just "printed" (i.e., plotted).}
@@ -44,7 +47,8 @@ repeatedMeasuresPlot(
   within.levels=list(phase=c("pre", "post", "fup"),
                     hour = c("1", "2", "3", "4", "5")),
   between.names=c("gender", "treatment"),
-  response.name="improvement")
+  response.name="improvement",
+  print.tables=TRUE)
 }
 
 repeatedMeasuresPlot(data=OBrienKaiser, 
