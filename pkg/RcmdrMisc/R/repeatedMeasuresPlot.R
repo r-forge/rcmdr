@@ -43,7 +43,7 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
       means <- as.data.frame(ftable(means))
       names(means)[ncol(means)] <- response.name
     } else {
-      means <- data.frame(names(means), means)
+      means <- data.frame(factor(names(means), levels=levels(data[, within.names])), means)
       names(means) <- c(within.names, response.name)
     }
     means
