@@ -1,8 +1,11 @@
-# last modified: 2020-04-07
+# last modified: 2020-04-08
 
 repeatedMeasuresPlot <- function(data, within, within.names, within.levels, between.names=NULL,
-                                 response.name="score", trace, xvar, col=palette()[-1],
+                                 response.name="score", trace, xvar, pch=15:25, lty=1:6,
+                                 col=palette()[-1], plot.means=TRUE,
                                  print.tables=FALSE){
+  
+  if (!(plot.means || print.tables)) stop("nothing to do (neither print tables nor plot means)!")
   
   if (missing(trace)) trace <- NA
   if (missing(xvar)) xvar <- NA
@@ -85,8 +88,8 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
         else
           1,
         type = "b",
-        lty = 1:tr.levels,
-        pch = 1:tr.levels,
+        lty = lty[1:tr.levels],
+        pch = pch[1:tr.levels],
         col = col[1:tr.levels],
         cex = 1.25,
         strip = function(...)
@@ -98,9 +101,9 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
             title = trace,
             cex.title = 1,
             text = list(levels(data[[trace]])),
-            lines = list(lty = 1:tr.levels, col = col[1:tr.levels]),
+            lines = list(lty = lty[1:tr.levels], col = col[1:tr.levels]),
             points = list(
-              pch = 1:tr.levels,
+              pch = pch[1:tr.levels],
               col = col[1:tr.levels],
               cex = 1.25
             )
@@ -110,8 +113,8 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
       xyplot(
         as.formula(form),
         type = "b",
-        lty = 1,
-        pch = 1,
+        lty = lty[1],
+        pch = pch[1],
         col = col[1],
         cex = 1.25,
         strip = function(...)
@@ -132,5 +135,5 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
     if (length(dim(Means$sdTable)) > 1) print(ftable(Means$sdTable))
     else print(Means$sdTable)
   }
-  rmPlot(Means$means)
+  if (plot.means) rmPlot(Means$means) else invisible(NULL)
 }

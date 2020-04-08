@@ -10,7 +10,8 @@ Creates a means plot for a repeated-measures ANOVA design with one or two within
 \usage{
 repeatedMeasuresPlot(data, within, within.names, within.levels, 
     between.names = NULL, response.name = "score", trace, xvar, 
-    col = palette()[-1], print.tables = FALSE)
+    pch=15:25, lty=1:6, col=palette()[-1], 
+    plot.means=TRUE, print.tables = FALSE)
 }
 
 \arguments{
@@ -22,9 +23,11 @@ repeatedMeasuresPlot(data, within, within.names, within.levels,
   \item{response.name}{optional quoted name for the response variable, defaults to \code{"score"}.}
   \item{trace}{optional quoted name of the factor to define profiles of means within each panel of the graph; the default is the within-subjects factor with the smaller number of levels, if there are two, or not used if there is one.}
   \item{xvar}{optional quoted name of the factor to define the horizontal axis of each panel; the default is the within-subjects factor with the larger number of levels.}
+  \item{pch, lty}{vectors of symbol and line-type numbers to use for the profiles of means (i.e., levels of the \code{trace} factor); for the meaning of the defaults, see \code{\link{points}} and \code{\link{par}}.}
   \item{col}{vector of colors for the profiles of means; the default is given by \code{palette()}, starting at the second color.}
+  \item{plot.means}{if \code{TRUE} (the default), draw a plot of means by the factors.}
   \item{print.tables}{if \code{TRUE} (the default is \code{FALSE}), print tables of means
-  and standard deviations of the response in addition to drawing the graph of means.}
+  and standard deviations of the response by the factors.}
 }
 
 \value{A \code{"trellis"} object, which normally is just "printed" (i.e., plotted).}
