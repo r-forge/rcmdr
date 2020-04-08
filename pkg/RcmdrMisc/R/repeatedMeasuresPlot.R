@@ -1,7 +1,8 @@
 # last modified: 2020-04-07
 
 repeatedMeasuresPlot <- function(data, within, within.names, within.levels, between.names=NULL,
-                                 response.name="score", trace, xvar, col=palette()[-1]){
+                                 response.name="score", trace, xvar, col=palette()[-1],
+                                 print.tables=FALSE){
   
   if (missing(trace)) trace <- NA
   if (missing(xvar)) xvar <- NA
@@ -38,7 +39,9 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
   
   computeMeans <- function(data){
     formula <- paste(response.name, " ~", paste(c(within.names, between.names), collapse="+"))
-    means <- Tapply(formula, "mean", data=data)
+    meanTable <- Tapply(formula, mean, data=data)
+    sdTable <- Tapply(formula, sd, data=data)
+    means <- meanTable
     if(length(dim(means)) > 1){
       means <- as.data.frame(ftable(means))
       names(means)[ncol(means)] <- response.name
@@ -46,7 +49,7 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
       means <- data.frame(factor(names(means), levels=levels(data[, within.names])), means)
       names(means) <- c(within.names, response.name)
     }
-    means
+    list(means=means, meanTable=meanTable, sdTable=sdTable)
   }
   
   rmPlot <- function(data) {
@@ -121,5 +124,13 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
   
   Long <- reshapeW2L(data)
   Means <- computeMeans(Long)
-  rmPlot(Means)
+  if (print.tables){
+    cat("\n Means of", response.name, "\n")
+    if (length(dim(Means$meanTable)) > 1) print(ftable(Means$meanTable))
+    else print(Means$meanTable)
+    cat("\n\n Standard deviations of", response.name, "\n")
+    if (length(dim(Means$sdTable)) > 1) print(ftable(Means$sdTable))
+    else print(Means$sdTable)
+  }
+  rmPlot(Means$means)
 }
