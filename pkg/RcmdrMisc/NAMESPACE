@@ -1,4 +1,4 @@
-# last modified 2020-04-04 by J. Fox
+# last modified 2020-04-11 by J. Fox
 
 importFrom(Hmisc, rcorr)
 importFrom(MASS, stepAIC)
@@ -23,7 +23,8 @@ export(assignCluster, Barplot, bin.var, binnedCounts, binVariable,
     colPercents, DeltaMethod, discreteCounts, discretePlot,
     Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, normalityTest,
     numSummary, partial.cor, piechart, plotBoot, plotDistr, plotMeans, rcorr.adjust, 
-    readXL, readSAS, readSPSS, readStata, reliability, rowPercents, repeatedMeasuresPlot,
+    readXL, readSAS, readSPSS, readStata, reliability, 
+    reshapeL2W, rowPercents, repeatedMeasuresPlot,
     stepwise, summarySandwich, totPercents,
     dgumbel, pgumbel, qgumbel, rgumbel)
 
