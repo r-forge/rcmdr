@@ -1,34 +1,29 @@
-reshapeL2W <- function(data, within.names, id, responses){
-  
-  # data: long data frame
-  # within.names: names of columns corresponding to repeated-measures factor(s)
-  # id: name of column identifying subjects
-  # responses: names of columns holding the response(s)
-  
+reshapeL2W <- function(data, within, id, varying){
+
   # create wide data set
   names <- colnames(data)
-  all <- c(within.names, id, responses)
+  all <- c(within, id, varying)
   bad <- all[!all %in% names]
   if (length(bad) > 0) stop("variables not in the data set: ", bad)
-  within <- data[, within.names, drop=FALSE]
-  within.var <- apply(within, 1, function(x) paste(as.character(x), collapse="."))
+  within.factors <- data[, within, drop=FALSE]
+  within.var <- apply(within.factors, 1, function(x) paste(as.character(x), collapse="."))
   data <- cbind(data, within.var)
-  occasions <- paste(within.names, collapse=".")
+  occasions <- paste(within, collapse=".")
   names(data)[length(data)] <- occasions
   occasions.1 <- paste0(occasions, ".1")
-  result <- reshape(data, timevar=occasions, idvar=id, v.names=responses,  direction="wide", 
-                    drop=if (length(within.names) > 1) within.names)
+  result <- reshape(data, timevar=occasions, idvar=id, v.names=varying,  direction="wide", 
+                    drop=if (length(within) > 1) within)
   
   # create names for the repeated-measures columns
   rownames(result) <- result[, id]
   result <- result[, - which(colnames(result) %in% c(id, occasions.1))]
-  within.levels <- lapply(within[, rev(within.names), drop=FALSE], levels)
+  within.levels <- lapply(within.factors[, rev(within), drop=FALSE], levels)
   grid <- expand.grid(within.levels)
   repeated.names <- apply(grid, 1, function(x) paste(rev(x), collapse="."))
   all.repeated.cols <- NULL
-  for (var in responses){
+  for (var in varying){
     repeated.cols <- grep(paste0("^", var, "."), names(result))
-    nms <- if (length(responses) > 1) paste0(repeated.names, ".", var) else repeated.names
+    nms <- if (length(varying) > 1) paste0(repeated.names, ".", var) else repeated.names
     names(result)[repeated.cols] <- make.names(nms)
     all.repeated.cols <- c(all.repeated.cols, repeated.cols)
   }
