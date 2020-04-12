@@ -1,10 +1,17 @@
-reshapeL2W <- function(data, within, id, varying){
+reshapeL2W <- function(data, within, id, varying, ignore){
 
   # create wide data set
+  if (missing(ignore)) ignore <- NULL
   names <- colnames(data)
-  all <- c(within, id, varying)
+  all <- c(within, id, varying, ignore)
   bad <- all[!all %in% names]
   if (length(bad) > 0) stop("variables not in the data set: ", bad)
+  duplicated <- unique(all[duplicated(all)])
+  if (length(duplicated) > 0) stop(paste0("the following variables appear more than once: ", paste(duplicated, collapse=", ")))
+  if (!is.null(ignore)){
+    remove <- which(names(data) %in% ignore )
+    data <- data[, -remove]
+  }
   within.factors <- data[, within, drop=FALSE]
   within.var <- apply(within.factors, 1, function(x) paste(as.character(x), collapse="."))
   data <- cbind(data, within.var)
