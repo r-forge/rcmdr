@@ -10,7 +10,7 @@ A simple front-end to the standard R \code{\link{reshape}} function. The data ar
 }
 
 \usage{
-reshapeL2W(data, within, id, varying)
+reshapeL2W(data, within, id, varying, ignore)
 }
 
 \arguments{
@@ -18,10 +18,11 @@ reshapeL2W(data, within, id, varying)
   \item{within}{a character vector of names of the within-subjects factors in the long form of the data; there must be at least one within-subjects factor.}
   \item{id}{the (character) name of the variable representing the subject identifier in the long form of the data set; that is, rows with the same \code{id} belong to the same subject.}
   \item{varying}{a character vector of names of the occasion-varying variables in the long form of the data; there must be at least one such variable, and typically there will be just one, an occasion-varying response variable.}
+  \item{ignore}{an optional character vector of names of variables in the long form of the data to exclude from the wide data set.}
 }
 
 \details{
-Between-subjects variables don't vary by occasions for each subject. Variables that aren't listed explicitly in the arguments to the function are assumed to be between-subjects variables, and a warning is printed if their values aren't invariant for each subject. 
+Between-subjects variables don't vary by occasions for each subject. Variables that aren't listed explicitly in the arguments to the function are assumed to be between-subjects variables, and a warning is printed if their values aren't invariant for each subject (see the \code{ignore} argument). 
 
 Within-subjects factors vary by occasions for each subject, and it is assumed that the within-subjects design is regular, completely crossed, and balanced, so that the same combinations of within-subjects factors are observed for each subject. 
 
