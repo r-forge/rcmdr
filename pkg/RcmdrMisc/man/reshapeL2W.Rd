@@ -6,7 +6,7 @@ Reshape Repeated-Measures Data from Long to Wide Format
 }
 
 \description{
-A simple front-end to the standard R \code{\link{reshape}} function. The data are assumed to be in "wide" format, with several rows for each subject. 
+A simple front-end to the standard R \code{\link{reshape}} function. The data are assumed to be in "long" format, with several rows for each subject. 
 }
 
 \usage{
@@ -21,7 +21,7 @@ reshapeL2W(data, within.names, id, responses)
 }
 
 \details{
-Between-subjects variables don't vary by occasions for each subject. Within-subjects factors vary by occasions for each subject, and it is assumed that the within-subjects design is regular, completely crossed, and balanced, so that the same combinations of within-subjects factors are observed for each subject. Response variables (potentially) vary by occasions for each subject. 
+Between-subjects variables don't vary by occasions for each subject. Within-subjects factors vary by occasions for each subject, and it is assumed that the within-subjects design is regular, completely crossed, and balanced, so that the same combinations of within-subjects factors are observed for each subject. Response variables (potentially) vary by occasions for each subject. The "response" variables could also include occasion-varying covariates and can be factors as well as numeric variables. 
 
 The data are reshaped so that there is one row per subject, with columns for the between-subjects variables, and the responses as multiple columns representing the combinations of levels of the within-subjects factors.If a subject in the long form of the data set lacks any combinations of within-subjects factors, he or she is excluded (with a warning) from the wide form of the data. The names of the response columns are composed from the combinations of levels of the within-subjects factors and from the names of the responses (if there is more than one).
 }
