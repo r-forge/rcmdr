@@ -2,7 +2,7 @@ Changes to Version 2.7-1
 
   o Added repeatedMeasuresPlot().
   
-  o Added reshapeL2W().
+  o Added reshapeL2W() and reshapeW2L().
 
 Changes to Version 2.7-0
 
