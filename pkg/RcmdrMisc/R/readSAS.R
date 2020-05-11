@@ -1,6 +1,6 @@
-# last modified 2016-08-18 by J. Fox
+# last modified 2020-05-11 by J. Fox
 
-readSAS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors()){
+readSAS <- function(file, rownames=FALSE, stringsAsFactors=FALSE){
     Data <- as.data.frame(haven::read_sas(file))
     if (rownames){
         check <- length(unique(col1 <- Data[[1]])) == nrow(Data)

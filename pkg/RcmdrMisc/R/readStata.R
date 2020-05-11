@@ -1,6 +1,6 @@
-# last modified 2016-08-30 by J. Fox
+# last modified 2020-05-11 by J. Fox
 
-readStata <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(), convert.dates=TRUE){
+readStata <- function(file, rownames=FALSE, stringsAsFactors=FALSE, convert.dates=TRUE){
     Data <- readstata13::read.dta13(file, convert.factors=stringsAsFactors, convert.dates=convert.dates)
     if (rownames){
         check <- length(unique(col1 <- Data[[1]])) == nrow(Data)

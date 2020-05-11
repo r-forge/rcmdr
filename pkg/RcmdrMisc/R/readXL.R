@@ -1,7 +1,7 @@
-# last modified 2016-08-18 by J. Fox
+# last modified 2020-05-11 by J. Fox
 
 readXL <- function(file, rownames=FALSE, header=TRUE, na="", sheet=1, 
-                   stringsAsFactors=default.stringsAsFactors()){
+                   stringsAsFactors=FALSE){
   Data <- readxl::read_excel(path=file, sheet=sheet, col_names=header, na=na)
   class(Data) <- "data.frame"
   if (rownames){

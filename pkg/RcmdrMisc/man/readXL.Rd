@@ -13,7 +13,7 @@ names of spreadsheets in an Excel file.}
 
 \usage{
 readXL(file, rownames = FALSE, header = TRUE, na = "", sheet = 1, 
-  stringsAsFactors = default.stringsAsFactors())
+  stringsAsFactors = FALSE)
   
 excel_sheets(path)
 }
@@ -27,8 +27,8 @@ excel_sheets(path)
   \item{na}{character string denoting missing data; the default is the empty string, \code{""}.}
   \item{sheet}{number of the spreadsheet in the file containing the data to be read; the
     default is \code{1}.}
-  \item{stringsAsFactors}{if \code{TRUE} then columns containing character data are converted to
-    factors; the default is taken from \code{default.stringsAsFactors()}.}
+  \item{stringsAsFactors}{if \code{TRUE} (the default is \code{FALSE}) then columns containing character data are converted to
+    factors.}
 }
 
 \value{
