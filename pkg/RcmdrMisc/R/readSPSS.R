@@ -1,6 +1,6 @@
-# last modified 2018-02-20 by J. Fox
+# last modified 2020-05-11 by J. Fox
 
-readSPSS <- function(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(), tolower=TRUE, 
+readSPSS <- function(file, rownames=FALSE, stringsAsFactors=FALSE, tolower=TRUE, 
                      use.value.labels=TRUE, use.haven=!por){
     filename <- rev(strsplit(file, "\\.")[[1]])
     por <- "por" == if (length(filename) > 1) filename[1] else ""

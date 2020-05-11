@@ -9,17 +9,15 @@ a front end to the \code{\link{read.dta13}} function in the \pkg{readstata13} pa
 }
 
 \usage{
-readStata(file, rownames=FALSE, stringsAsFactors=default.stringsAsFactors(), 
-    convert.dates=TRUE)
+readStata(file, rownames=FALSE, stringsAsFactors=FALSE,  convert.dates=TRUE)
 }
 
 \arguments{
   \item{file}{path to a Stata \code{.dta} file.}
   \item{rownames}{if \code{TRUE} (the default is \code{FALSE}), the first column in the
     data set contains row names, which should be unique.}
-  \item{stringsAsFactors}{if \code{TRUE} then columns containing character data are converted to
-    factors and factors are created from Stata value labels; 
-    the default is taken from \code{default.stringsAsFactors()}.}
+  \item{stringsAsFactors}{if \code{TRUE} (the default is \code{FALSE}) then columns containing character data are converted to
+    factors and factors are created from Stata value labels.}
   \item{convert.dates}{if \code{TRUE} (the default) then Stata dates are converted to R dates.}
 }
 
