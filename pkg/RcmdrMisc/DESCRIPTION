@@ -12,6 +12,6 @@ Imports: abind, colorspace, Hmisc (>= 4.1-0), MASS, e1071, foreign, haven, reads
 Suggests: boot, datasets, carData
 ByteCompile: yes
 Description:
-  Various statistical, graphics, and data-management functions used by the Rcmdr package in the R Commander GUI for R. 
+  Various statistical, graphics, and data-management functions used by the Rcmdr package in the R Commander GUI for R.  
 License: GPL (>= 2)
 URL: https://www.r-project.org, https://socserv.socsci.mcmaster.ca/jfox/
