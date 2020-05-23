@@ -21,7 +21,7 @@ repeatedMeasuresPlot(data, within, within.names, within.levels,
   \item{within.levels}{a named list whose elements are character vectors of level names for the within-subjects factors, with names corresponding to the names of the within-subjects factors; the product of the numbers of levels should be equal to the number of repeated-measures columns in \code{within}.}
   \item{between.names}{a column vector of names of the between-subjects factors (if any).}
   \item{response.name}{optional quoted name for the response variable, defaults to \code{"score"}.}
-  \item{trace}{optional quoted name of the factor to define profiles of means within each panel of the graph; the default is the within-subjects factor with the smaller number of levels, if there are two, or not used if there is one.}
+  \item{trace}{optional quoted name of the (either within- or between-subjects) factor to define profiles of means in each panel of the graph; the default is the within-subjects factor with the smaller number of levels, if there are two, or not used if there is one.}
   \item{xvar}{optional quoted name of the factor to define the horizontal axis of each panel; the default is the within-subjects factor with the larger number of levels.}
   \item{pch, lty}{vectors of symbol and line-type numbers to use for the profiles of means (i.e., levels of the \code{trace} factor); for the meaning of the defaults, see \code{\link{points}} and \code{\link{par}}.}
   \item{col}{vector of colors for the profiles of means; the default is given by \code{palette()}, starting at the second color.}
@@ -52,7 +52,6 @@ repeatedMeasuresPlot(
   between.names=c("gender", "treatment"),
   response.name="improvement",
   print.tables=TRUE)
-}
 
 repeatedMeasuresPlot(data=OBrienKaiser, 
   within=c("pre.1", "pre.2", "pre.3", "pre.4", "pre.5",
@@ -62,8 +61,8 @@ repeatedMeasuresPlot(data=OBrienKaiser,
   within.levels=list(phase=c("pre", "post", "fup"),
                     hour = c("1", "2", "3", "4", "5")),
   between.names=c("gender", "treatment"),
-  trace="gender")
-
+  trace="gender") # note that gender is between subjects
+}
 }
 
 \keyword{hplot}
