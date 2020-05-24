@@ -40,7 +40,6 @@ John Fox \email{jfox@mcmaster.ca}
 
 \examples{
 if (require(carData)){
-
 repeatedMeasuresPlot(
   data=OBrienKaiser, 
   within=c("pre.1", "pre.2", "pre.3", "pre.4", "pre.5",
@@ -52,7 +51,9 @@ repeatedMeasuresPlot(
   between.names=c("gender", "treatment"),
   response.name="improvement",
   print.tables=TRUE)
+}
 
+if (require(carData)){
 repeatedMeasuresPlot(data=OBrienKaiser, 
   within=c("pre.1", "pre.2", "pre.3", "pre.4", "pre.5",
           "post.1", "post.2", "post.3", "post.4", "post.5",
@@ -62,6 +63,16 @@ repeatedMeasuresPlot(data=OBrienKaiser,
                     hour = c("1", "2", "3", "4", "5")),
   between.names=c("gender", "treatment"),
   trace="gender") # note that gender is between subjects
+}
+
+if (require(carData)){
+repeatedMeasuresPlot(
+  data=OBrienKaiser, 
+  within=c("fup.1", "fup.2", "fup.3", "fup.4", "fup.5"), 
+  within.names="hour", 
+  within.levels=list(hour = c("1", "2", "3", "4", "5")),
+  between.names=c("treatment", "gender"),
+  response.name="improvement")
 }
 }
 
