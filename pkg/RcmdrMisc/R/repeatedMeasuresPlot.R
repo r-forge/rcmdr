@@ -96,8 +96,7 @@ repeatedMeasuresPlot <- function(data, within, within.names, within.levels, betw
           strip.default(strip.names = c(TRUE, TRUE), ...),
         data = data,
         ylab = paste("mean", response.name),
-        key = if (!is.null(trace))
-          list(
+        key = list(
             title = trace,
             cex.title = 1,
             text = list(levels(data[[trace]])),
