@@ -1,6 +1,6 @@
 # various high-level plots
 
-# last modified 2018-07-21 by J. Fox
+# last modified 2020-07-22 by J. Fox
 
 Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substitute(x)), 
     ylab=scale, main="", breaks="Sturges", ...){
@@ -8,6 +8,12 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
     scale <- match.arg(scale)
     ylab
     if (!missing(groups)){
+        groupsName <- deparse(substitute(groups))
+        if (!is.factor(groups)){
+          if (!(is.character(groups) || is.logical(groups)))
+            warning("groups variable is not a factor, character, or logical")
+          groups <- as.factor(groups)
+        }
         counts <- table(groups)
         if (any(counts == 0)){
             levels <- levels(groups)
@@ -42,9 +48,9 @@ Hist <- function(x, groups, scale=c("frequency", "percent", "density"), xlab=dep
         for (level in levels){
             if (counts[level] == 0) next
             if (scale != "percent") Hist(x[groups == level], scale=scale, xlab=xlab, ylab=ylab, 
-                main=paste(deparse(substitute(groups)), "=", level), breaks=breaks., ylim=c(0, ylim), ...)
+                main=paste(groupsName, "=", level), breaks=breaks., ylim=c(0, ylim), ...)
             else Hist(x[groups == level], scale=scale, xlab=xlab, ylab=ylab, 
-                main=paste(deparse(substitute(groups)), "=", level), breaks=breaks., ylim=c(0, ylim[level]), ...)
+                main=paste(groupsName, "=", level), breaks=breaks., ylim=c(0, ylim[level]), ...)
         }
         if (main != "") mtext(side = 3, outer = TRUE, main, cex = 1.2)
         return(invisible(hists))
@@ -213,8 +219,12 @@ plotMeans <- function(response, factor1, factor2, error.bars = c("se", "sd", "co
     legend.lab
     legend.pos <- match.arg(legend.pos)
     error.bars <- match.arg(error.bars)
+    if (!is.factor(factor1)) {
+      if (!(is.character(factor1) || is.logical(factor1))) 
+        stop("Argument factor1 must be a factor, character, or logical.")
+      factor1 <- as.factor(factor1)
+    }
     if (missing(factor2)){
-        if (!is.factor(factor1)) stop("Argument factor1 must be a factor.")
         valid <- complete.cases(factor1, response)
         factor1 <- factor1[valid]
         response <- response[valid]
@@ -236,7 +246,11 @@ plotMeans <- function(response, factor1, factor2, error.bars = c("se", "sd", "co
                                          angle=90, lty=2, code=3, length=0.125)
     }
     else {
-        if (!(is.factor(factor1) | is.factor(factor2))) stop("Arguments factor1 and factor2 must be factors.")
+        if (!is.factor(factor2)) {
+          if (!(is.character(factor2) || is.logical(factor2))) 
+            stop("Argument factor2 must be a factor, charcter, or logical.")
+          factor2 <- as.factor(factor2)
+        }        
         valid <- complete.cases(factor1, factor2, response)
         factor1 <- factor1[valid]
         factor2 <- factor2[valid]

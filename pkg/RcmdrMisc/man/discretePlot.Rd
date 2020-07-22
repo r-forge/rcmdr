@@ -16,7 +16,7 @@ discretePlot(x, by, scale = c("frequency", "percent"),
 
 \arguments{
   \item{x}{a numeric variable.}
-  \item{by}{optionally a factor by which to classify \code{x}.}
+  \item{by}{optionally a factor (or character or logical variable) by which to classify \code{x}.}
   \item{scale}{either \code{"frequency"} (the default) or \code{"percent"}.}
   \item{xlab}{optional character string to label the horizontal axis.}
   \item{ylab}{optional character string to label the vertical axis.}

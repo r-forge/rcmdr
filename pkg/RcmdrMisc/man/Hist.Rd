@@ -15,7 +15,7 @@ Hist(x, groups, scale=c("frequency", "percent", "density"), xlab=deparse(substit
 
 \arguments{
   \item{x}{a vector of values for which a histogram is to be plotted.}
-  \item{groups}{a factor to create histograms by group with common horizontal and vertical scales.}
+  \item{groups}{a factor (or character or logical variable) to create histograms by group with common horizontal and vertical scales.}
   \item{scale}{the scaling of the vertical axis: \code{"frequency"} (the default),
     \code{"percent"}, or \code{"density"}.}
   \item{xlab}{x-axis label, defaults to name of variable.}
