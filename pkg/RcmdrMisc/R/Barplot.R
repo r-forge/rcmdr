@@ -1,4 +1,4 @@
-# last modified 2019-12-24
+# last modified 2020-07-22
 
 Barplot <- function(x, by, scale=c("frequency", "percent"), 
                     conditional=TRUE,
@@ -12,8 +12,16 @@ Barplot <- function(x, by, scale=c("frequency", "percent"),
         if (rem != 0 && rem < target/2) target <- target - 1
         target
     }
-    if (!is.factor(x)) stop("x must be a factor")
-    if (!missing(by) && !is.factor(by)) stop("by must be a factor")
+    force(xlab)
+    force(legend.title)
+    if (!is.factor(x)) {
+        if (!(is.character(x) || is.logical(x))) stop("x must be a factor, character, or logical")
+        x <- as.factor(x)
+    }
+    if (!missing(by) && !is.factor(by)) {
+        if (!(is.character(by) || is.logical(by))) stop("by must be a factor, character, or logical")
+        by <- as.factor(by)
+    }
     scale <- match.arg(scale)
     style <- match.arg(style)
     if (legend.pos == "above"){

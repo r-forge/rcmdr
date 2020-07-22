@@ -16,7 +16,7 @@ Dotplot(x, by, bin = FALSE, breaks, xlim,
 
 \arguments{
   \item{x}{a numeric variable.}
-  \item{by}{optionally a factor by which to classify \code{x}.}
+  \item{by}{optionally a factor (or character or logical variable) by which to classify \code{x}.}
   \item{bin}{if \code{TRUE} (the default is \code{FALSE}), the values of \code{x} are binned, 
     as in a histogram, prior to plotting.}
   \item{breaks}{breaks for the bins, in a form acceptable to the \code{\link{hist}} function;

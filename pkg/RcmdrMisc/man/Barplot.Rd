@@ -21,9 +21,9 @@ Barplot(x, by, scale = c("frequency", "percent"), conditional=TRUE,
 
 \arguments{
   \item{x}{
-a factor.}
+a factor (or character or logical variable).}
   \item{by}{
-optionally, a second factor.}
+optionally, a second factor (or character or logical variable).}
   \item{scale}{
 either \code{"frequency"} (the default) or \code{"percent"}.}
   \item{conditional}{

@@ -1,6 +1,8 @@
 Dotplot <- function(x, by, bin=FALSE, breaks, xlim, xlab=deparse(substitute(x))){
     dotplot <- function(x, by, bin=FALSE, breaks, xlim,
-                        xlab=deparse(substitute(x)), main="", correction=1/3, correction.char=1, y.max){
+                        xlab=deparse(substitute(x)),
+                        main="", correction=1/3, correction.char=1, y.max){
+        bylab <- if (!missing(by)) deparse(substitute(by))
         if (bin) hist <- hist(x, breaks=breaks, plot=FALSE)
         if (missing(by)){
             y <- if (bin) hist$counts else table(x)
@@ -35,7 +37,8 @@ Dotplot <- function(x, by, bin=FALSE, breaks, xlim, xlab=deparse(substitute(x)))
                     max.count <- max(max.count, hist.level$counts)
                 }
                 for (level in levels){
-                    dotplot(x[by == level], xlab=xlab, main=paste(label.by, "=", level),
+                    mainlabel <- paste(bylab, "=", level)
+                    dotplot(x[by == level], xlab=xlab, main=mainlabel, 
                             bin=TRUE, breaks=hist$breaks, xlim=xlim, correction=1/2, 
                             correction.char=0.5, y.max=max.count)
                 }
@@ -43,27 +46,31 @@ Dotplot <- function(x, by, bin=FALSE, breaks, xlim, xlab=deparse(substitute(x)))
             else {
                 y <- table(x, by)
                 for (level in levels){
-                    dotplot(x[by == level], xlab=xlab, main=paste(label.by, "=", level),
+                    mainlabel <- paste(bylab, "=", level)
+                    dotplot(x[by == level], xlab=xlab, main=mainlabel,
                             xlim=xlim, correction=1/2, correction.char=0.5, y.max=max(y))
                 }
             }
         }
     }
     if (!is.numeric(x)) stop("x must be a numeric variable")
-    if (!missing(by) && !is.factor(by)) stop("by must be a factor")
+    if (!missing(by) && !is.factor(by)) {
+        bylab <- deparse(substitute(by))
+        if (!(is.character(by) || is.logical(by))) stop("by must be a factor, character, or logical")
+        by <- as.factor(by)
+    }
     force(xlab)
     if (missing(by)){
         x <- na.omit(x)
     }
     else{
-        label.by <- deparse(substitute(by))
         keep <- complete.cases(x, by)
         x <- x[keep]
         by <- by[keep]
     }
     if (missing(xlim)) xlim <- range(x)
     force(xlab)
-    if (missing(breaks))breaks <- "Sturges"
+    if (missing(breaks)) breaks <- "Sturges"
     if (missing(by)) dotplot(x=x, bin=bin, breaks=breaks, xlim=xlim, xlab=xlab)
     else dotplot(x=x, by=by, bin=bin, breaks=breaks, xlim=xlim, xlab=xlab)
 }

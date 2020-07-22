@@ -19,7 +19,7 @@ indexplot(x, groups, labels = seq_along(x), id.method = "y", type = "h",
     if \code{x} is a matrix or data frame, plots vertically aligned index plots for the columns.}
   \item{labels}{point labels; if \code{x} is a data frame, defaults to the row names of \code{x},
     otherwise to the case index.}
-  \item{groups}{an optional grouping variable, typically a factor.}
+  \item{groups}{an optional grouping variable, typically a factor (or character or logical variable).}
   \item{id.method}{method for identifying points; see \code{\link[car]{showLabels}}.}
   \item{type}{to be passed to \code{\link{plot}}.}
   \item{id.n}{number of points to identify; see \code{\link[car]{showLabels}}.}

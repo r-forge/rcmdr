@@ -17,6 +17,12 @@ discretePlot <- function(x, by, scale=c("frequency", "percent"), xlab=deparse(su
     }
     else{
         by.var <- deparse(substitute(by))
+        if (!is.factor(by)){
+            if (!(is.character(by) || is.logical(by))){
+                stop("by must be a factor, character, or logical")
+            }
+            by <- as.factor(by)
+        }
         complete <- complete.cases(x, by)
         x <- x[complete]
         by <- by[complete]
