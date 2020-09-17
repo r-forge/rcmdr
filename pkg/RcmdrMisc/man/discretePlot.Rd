@@ -11,7 +11,8 @@ optionally classified by a factor.
 
 \usage{
 discretePlot(x, by, scale = c("frequency", "percent"), 
-    xlab = deparse(substitute(x)), ylab = scale, main = "")
+    xlab = deparse(substitute(x)), ylab = scale, main = "",
+    xlim=NULL, ylim=NULL, ...)
 }
 
 \arguments{
@@ -21,12 +22,16 @@ discretePlot(x, by, scale = c("frequency", "percent"),
   \item{xlab}{optional character string to label the horizontal axis.}
   \item{ylab}{optional character string to label the vertical axis.}
   \item{main}{optonal main label for the plot (ignored if the \code{by} argument is specified).}
+  \item{xlim, ylim}{two-element numeric vectors specifying the ranges of the x and y axes; 
+  if not specified, will be determined from the data; 
+  the lower limit of the y-axis should normally be 0 and a warning will be printed if it isn't.}
+  \item{...}{other arguments to be passed to \code{\link[graphics:plot.default]{plot}}}.
 }
 
 \details{
 If the \code{by} argument is specified, then one plot is produced for each
 level of \code{by}; these are arranged vertically and all use the same scale
-for \code{x}.
+for the horizontal and vertical axes.
 }
 
 \value{
