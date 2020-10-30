@@ -1,4 +1,4 @@
-# last modified 2020-07-22
+# last modified 2020-10-30
 
 Barplot <- function(x, by, scale=c("frequency", "percent"), 
                     conditional=TRUE,
@@ -71,7 +71,7 @@ Barplot <- function(x, by, scale=c("frequency", "percent"),
         if (label.bars){
             yy <- if (is.matrix(mids)) as.vector(y) else as.vector(apply(y, 2, cumsum))
             labels <- if (scale == "percent") paste0(round(as.vector(y)), "%") else as.vector(y)
-            xx <- if (is.vector(mids)) rep(mids, each=ncol(y)) else as.vector(mids)
+            xx <- if (is.vector(mids)) rep(mids, each=nrow(y)) else as.vector(mids)
             text(xx, yy, labels, pos=1, offset=0.5)
         }
     }
