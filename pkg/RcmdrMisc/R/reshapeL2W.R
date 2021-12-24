@@ -21,17 +21,20 @@ reshapeL2W <- function(data, within, id, varying, ignore){
   result <- reshape(data, timevar=occasions, idvar=id, v.names=varying,  direction="wide", 
                     drop=if (length(within) > 1) within)
   
-  # create names for the repeated-measures columns
+  # # create names for the repeated-measures columns
+  
   rownames(result) <- result[, id]
   result <- result[, - which(colnames(result) %in% c(id, occasions.1))]
-  within.levels <- lapply(within.factors[, rev(within), drop=FALSE], levels)
-  grid <- expand.grid(within.levels)
-  repeated.names <- apply(grid, 1, function(x) paste(rev(x), collapse="."))
+  
+  # within.levels <- lapply(within.factors[, rev(within), drop=FALSE], levels)
+  # grid <- expand.grid(within.levels)
+  # repeated.names <- apply(grid, 1, function(x) paste(rev(x), collapse="."))
+  
   all.repeated.cols <- NULL
   for (var in varying){
     repeated.cols <- grep(paste0("^", var, "."), names(result))
-    nms <- if (length(varying) > 1) paste0(repeated.names, ".", var) else repeated.names
-    names(result)[repeated.cols] <- make.names(nms)
+    # nms <- if (length(varying) > 1) paste0(repeated.names, ".", var) else repeated.names
+    # names(result)[repeated.cols] <- make.names(nms)
     all.repeated.cols <- c(all.repeated.cols, repeated.cols)
   }
   
