@@ -1,4 +1,5 @@
-# last modified 2020-04-13 by J. Fox
+## last modified  by J. Fox 2020-04-13
+## last modified by MMM     2023-03-20
 
 importFrom(Hmisc, rcorr)
 importFrom(MASS, stepAIC)
@@ -20,7 +21,7 @@ importFrom(nortest, ad.test, cvm.test, lillie.test, pearson.test, sf.test)
 importFrom(lattice, xyplot, strip.default)
 
 export(assignCluster, Barplot, bin.var, binnedCounts, binVariable, 
-    colPercents, DeltaMethod, discreteCounts, discretePlot,
+    colPercents, CV, DeltaMethod, discreteCounts, discretePlot,
     Dotplot, excel_sheets, Hist, indexplot, KMeans, lineplot, mergeRows, normalityTest,
     numSummary, partial.cor, piechart, plotBoot, plotDistr, plotMeans, rcorr.adjust, 
     readXL, readSAS, readSPSS, readStata, reliability, 
