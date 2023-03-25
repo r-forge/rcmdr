@@ -9,18 +9,20 @@ skewness, kurtosis, and quantiles of numeric variables.
 }
 \usage{
 numSummary(data, 
-	statistics=c("mean", "sd", "se(mean)", "IQR", 
-        "quantiles", "cv", "skewness", "kurtosis"),
-	type=c("2", "1", "3"),
-    quantiles=c(0, .25, .5, .75, 1), groups)
+           statistics=c("mean", "sd", "se(mean)", "var", "CV", "IQR", 
+                "quantiles", "skewness", "kurtosis"),
+            type=c("2", "1", "3"),
+            quantiles=c(0, .25, .5, .75, 1),
+            groups)
     
 \method{print}{numSummary}(x, ...)
 }
 
 \arguments{
   \item{data}{a numeric vector, matrix, or data frame.}
-  \item{statistics}{any of \code{"mean"}, \code{"sd"}, \code{"se(mean)"}, \code{"quantiles"}, 
-  	\code{"cv"} (coefficient of variation --- sd/mean), \code{"skewness"}, or \code{"kurtosis"},
+  \item{statistics}{any of \code{"mean"}, \code{"sd"}, \code{"se(mean)"},
+  \code{"var"}, \code{"CV"}, \code{"IQR"}, \code{"quantiles"}, 
+  	\code{"skewness"}, or \code{"kurtosis"},
     defaulting to \code{c("mean", "sd", "quantiles", "IQR")}.}
   \item{type}{definition to use in computing skewness and kurtosis; see the 
   	\code{\link[e1071]{skewness}} and \code{\link[e1071]{kurtosis}} functions in the \pkg{e1071}
@@ -43,7 +45,7 @@ statistics to be reported along with information on missing data, if there are a
 	\code{\link[e1071]{skewness}}, \code{\link[e1071]{kurtosis}}.}
 
 \examples{
-if (require("car")){
+if (require("carData")){
     data(Prestige)
     Prestige[1, "income"] <- NA
     print(numSummary(Prestige[,c("income", "education")], 

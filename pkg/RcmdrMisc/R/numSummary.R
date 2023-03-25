@@ -1,7 +1,7 @@
 ## various numeric summary statistics
 
 ## last modified by MMM    2023-03-20
-## last modified by J. Fox 2020-10-30 
+## last modified by J. Fox 2022-03-25 
 
 CV <- function(x, na.rm=TRUE){
     x <- as.matrix(x)
@@ -12,8 +12,7 @@ CV <- function(x, na.rm=TRUE){
         CV <- sd/mean
         CV[mean <= 0] <- NA
     } else {
-        warning("not numeric")
-        CV <- NA
+        stop("x is not numeric")
     }
     CV
 }

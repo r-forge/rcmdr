@@ -1,3 +1,7 @@
+Changes to Version 2.9-0
+
+  o Added CV() function.
+
 Changes to Version 2.7-2
 
   o Added xlim, ylim, and ... args to discretePlot() (suggestion of Beatriz Lacruz Casaucau).
