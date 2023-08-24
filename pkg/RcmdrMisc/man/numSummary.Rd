@@ -1,11 +1,12 @@
 \name{numSummary}
 \alias{numSummary}
 \alias{print.numSummary}
+\alias{CV}
 
 \title{Summary Statistics for Numeric Variables}
 \description{
 \code{numSummary} creates neatly formatted tables of means, standard deviations, coefficients of variation,
-skewness, kurtosis, and quantiles of numeric variables.
+skewness, kurtosis, and quantiles of numeric variables. \code{CV} computes the coefficient of variation.
 }
 \usage{
 numSummary(data, 
@@ -14,6 +15,8 @@ numSummary(data,
             type=c("2", "1", "3"),
             quantiles=c(0, .25, .5, .75, 1),
             groups)
+
+CV(x, na.rm=TRUE)
     
 \method{print}{numSummary}(x, ...)
 }
@@ -29,13 +32,14 @@ numSummary(data,
   	package. The default is \code{"2"}.}
   \item{quantiles}{quantiles to report; default is \code{c(0, 0.25, 0.5, 0.75, 1)}.}
   \item{groups}{optional variable, typically a factor, to be used to partition the data.}
-  \item{x}{object of class \code{"numSummary"} to print.}
+  \item{x}{object of class \code{"numSummary"} to print, or for \code{CV}, a numeric vector or matrix.}
+  \item{na.rm}{if \code{TRUE} (the default) remove \code{NA}s before computing the coefficient of variation.}
   \item{\dots}{arguments to pass down from the print method.}
 }
 
 \value{
 \code{numSummary} returns an object of class \code{"numSummary"} containing the table of 
-statistics to be reported along with information on missing data, if there are any.
+statistics to be reported along with information on missing data, if there are any. \code{CV} returns the coefficient(s) of variation.
 }
 
 \author{John Fox \email{jfox@mcmaster.ca}}
