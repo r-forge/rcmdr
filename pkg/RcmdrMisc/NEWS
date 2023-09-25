@@ -1,3 +1,7 @@
+Changes to Version 2.9-1
+
+  o Fixed bug in numSummaries() introduced along with CV() (reported by Kenneth Knoblauch).
+
 Changes to Version 2.9-0
 
   o Added CV() function.

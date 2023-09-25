@@ -1,7 +1,7 @@
 ## various numeric summary statistics
 
 ## last modified by MMM    2023-03-20
-## last modified by J. Fox 2022-03-25 
+## last modified by J. Fox 2023-09-25 
 
 CV <- function(x, na.rm=TRUE){
     x <- as.matrix(x)
@@ -68,7 +68,7 @@ numSummary <- function(data,
     }
     quants <- if (length(quantiles) >= 1) paste(100*quantiles, "%", sep="") else NULL
     nquants <- length(quants)
-    stats <- c(c("mean", "sd", "se(mean)", "var", "IQR", "CV", "skewness", "kurtosis")[c("mean", "sd", "se(mean)", "var", "CV", "IQR", "skewness", "kurtosis") %in% statistics], quants)
+    stats <- c(c("mean", "sd", "se(mean)", "var", "IQR", "CV", "skewness", "kurtosis")[c("mean", "sd", "se(mean)", "var", "IQR", "CV", "skewness", "kurtosis") %in% statistics], quants)
     nstats <- length(stats)
     nvars <- length(variables)
     result <- list()
