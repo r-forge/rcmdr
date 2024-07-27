@@ -43,7 +43,7 @@ echo $contents; } ?>
 
 <!-- end of project description -->
 
-<p> No content added. </p>
+<p>This project has been moved, please go to <a href="https://github.com/RCmdr-Project/rcmdr">RCmdr project</a> in github to check the current version. (This is a read-only copy for archiving.)</p>
 
 <p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
